@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ha Trong Nguyen | Professional Certificates</title>
+        <link
+            rel="icon"
+            href="https://github.com/htrnguyen.png"
+            type="image/png"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+
+        <style>
+            :root {
+                --primary: #2563eb;
+                --primary-dark: #1d4ed8;
+                --secondary: #64748b;
+                --accent: #f59e0b;
+                --success: #10b981;
+                --bg-light: #ffffff;
+                --bg-dark: #0f172a;
+                --text-light: #1e293b;
+                --text-dark: #f1f5f9;
+                --border-light: #e2e8f0;
+                --border-dark: #334155;
+                --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Inter', sans-serif;
+                line-height: 1.6;
+                color: var(--text-light);
+                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                transition: all 0.3s ease;
+            }
+
+            body.dark-mode {
+                color: var(--text-dark);
+                background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            }
+
+            .header {
+                background: var(--gradient);
+                color: white;
+                padding: 120px 0 80px;
+                text-align: center;
+                position: relative;
+            }
+
+            .avatar {
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                border: 4px solid rgba(255, 255, 255, 0.3);
+                margin: 0 auto 24px;
+                display: block;
+                transition: transform 0.3s ease;
+            }
+
+            .avatar:hover {
+                transform: scale(1.05);
+            }
+
+            .header h1 {
+                font-size: 3rem;
+                font-weight: 700;
+                margin-bottom: 16px;
+            }
+
+            .header .subtitle {
+                font-size: 1.25rem;
+                opacity: 0.9;
+                margin-bottom: 32px;
+            }
+
+            .social-links {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .social-links a {
+                color: white;
+                font-size: 1.5rem;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.1);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+            }
+
+            .social-links a:hover {
+                background: rgba(255, 255, 255, 0.2);
+                transform: translateY(-2px);
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 24px;
+            }
+
+            .stats {
+                background: white;
+                border-radius: 20px;
+                padding: 32px;
+                margin: -40px auto 48px;
+                max-width: 800px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                position: relative;
+                z-index: 10;
+            }
+
+            body.dark-mode .stats {
+                background: var(--bg-dark);
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            }
+
+            .stats-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 24px;
+                text-align: center;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: var(--primary);
+                margin-bottom: 8px;
+            }
+
+            .stat-label {
+                color: var(--secondary);
+                font-weight: 500;
+            }
+
+            .search-section {
+                background: white;
+                border-radius: 16px;
+                padding: 24px;
+                margin-bottom: 32px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            body.dark-mode .search-section {
+                background: var(--bg-dark);
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            }
+
+            .search-container {
+                display: grid;
+                grid-template-columns: 1fr auto;
+                gap: 16px;
+                align-items: end;
+            }
+
+            .search-group label {
+                font-weight: 600;
+                color: var(--text-light);
+                font-size: 0.875rem;
+                margin-bottom: 8px;
+                display: block;
+            }
+
+            body.dark-mode .search-group label {
+                color: var(--text-dark);
+            }
+
+            .search-input,
+            .filter-select {
+                padding: 12px 16px;
+                border: 2px solid var(--border-light);
+                border-radius: 12px;
+                font-size: 1rem;
+                transition: all 0.3s ease;
+                background: white;
+                width: 100%;
+            }
+
+            body.dark-mode .search-input,
+            body.dark-mode .filter-select {
+                background: var(--bg-dark);
+                border-color: var(--border-dark);
+                color: var(--text-dark);
+            }
+
+            .search-input:focus,
+            .filter-select:focus {
+                outline: none;
+                border-color: var(--primary);
+                box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            }
+
+            .filter-select {
+                min-width: 150px;
+                cursor: pointer;
+            }
+
+            .certificates-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+                gap: 24px;
+                margin-bottom: 48px;
+            }
+
+            .certificate-card {
+                background: white;
+                border-radius: 16px;
+                padding: 24px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+                border: 1px solid var(--border-light);
+                position: relative;
+                overflow: hidden;
+            }
+
+            body.dark-mode .certificate-card {
+                background: var(--bg-dark);
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+                border-color: var(--border-dark);
+            }
+
+            .certificate-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: var(--gradient);
+            }
+
+            .certificate-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            }
+
+            body.dark-mode .certificate-card:hover {
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            }
+
+            .certificate-icon {
+                width: 48px;
+                height: 48px;
+                background: var(--gradient);
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 1.25rem;
+                margin-bottom: 16px;
+            }
+
+            .certificate-title {
+                font-size: 1.125rem;
+                font-weight: 600;
+                color: var(--text-light);
+                text-decoration: none;
+                line-height: 1.4;
+                margin-bottom: 8px;
+                display: block;
+                transition: color 0.3s ease;
+            }
+
+            body.dark-mode .certificate-title {
+                color: var(--text-dark);
+            }
+
+            .certificate-title:hover {
+                color: var(--primary);
+            }
+
+            .certificate-meta {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                margin-bottom: 16px;
+            }
+
+            .certificate-type {
+                color: var(--primary);
+                font-weight: 500;
+                font-size: 0.875rem;
+            }
+
+            .certificate-date {
+                color: var(--secondary);
+                font-size: 0.875rem;
+            }
+
+            .btn {
+                padding: 8px 16px;
+                border-radius: 8px;
+                font-weight: 500;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                transition: all 0.3s ease;
+                border: none;
+                cursor: pointer;
+                font-size: 0.875rem;
+            }
+
+            .btn-primary {
+                background: var(--primary);
+                color: white;
+            }
+
+            .btn-primary:hover {
+                background: var(--primary-dark);
+                color: white;
+                transform: translateY(-1px);
+            }
+
+            .footer {
+                background: var(--bg-dark);
+                color: var(--text-dark);
+                padding: 48px 0;
+                text-align: center;
+                margin-top: 80px;
+            }
+
+            .footer-content {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .footer h3 {
+                margin-bottom: 16px;
+                font-weight: 600;
+            }
+
+            .footer p {
+                margin-bottom: 24px;
+                opacity: 0.8;
+            }
+
+            .footer-links {
+                display: flex;
+                justify-content: center;
+                gap: 24px;
+                margin-bottom: 32px;
+            }
+
+            .footer-links a {
+                color: var(--text-dark);
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+            .footer-links a:hover {
+                color: var(--primary);
+            }
+
+            .dark-mode-toggle {
+                position: fixed;
+                top: 24px;
+                right: 24px;
+                background: rgba(255, 255, 255, 0.1);
+                border: none;
+                color: white;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                cursor: pointer;
+                backdrop-filter: blur(10px);
+                transition: all 0.3s ease;
+                z-index: 1000;
+            }
+
+            .dark-mode-toggle:hover {
+                background: rgba(255, 255, 255, 0.2);
+                transform: scale(1.1);
+            }
+
+            .loading {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: var(--bg-light);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9999;
+                transition: opacity 0.5s ease;
+            }
+
+            body.dark-mode .loading {
+                background: var(--bg-dark);
+            }
+
+            .spinner {
+                width: 40px;
+                height: 40px;
+                border: 4px solid var(--border-light);
+                border-top: 4px solid var(--primary);
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+
+            @keyframes spin {
+                0% {
+                    transform: rotate(0deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+
+            .fade-in {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: all 0.6s ease;
+            }
+
+            .fade-in.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .empty-state {
+                text-align: center;
+                padding: 80px 24px;
+                color: var(--secondary);
+            }
+
+            .empty-state i {
+                font-size: 4rem;
+                margin-bottom: 24px;
+                opacity: 0.5;
+            }
+
+            .empty-state h3 {
+                margin-bottom: 16px;
+                color: var(--text-light);
+            }
+
+            body.dark-mode .empty-state h3 {
+                color: var(--text-dark);
+            }
+
+            /* View Toggle */
+            .view-toggle {
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+                margin-bottom: 24px;
+            }
+
+            .view-btn {
+                padding: 8px 16px;
+                border: 2px solid var(--border-light);
+                background: white;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-weight: 500;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            body.dark-mode .view-btn {
+                background: var(--bg-dark);
+                border-color: var(--border-dark);
+                color: var(--text-dark);
+            }
+
+            .view-btn.active {
+                background: var(--primary);
+                color: white;
+                border-color: var(--primary);
+            }
+
+            .view-btn:hover {
+                border-color: var(--primary);
+            }
+
+            /* Timeline Styles */
+            .timeline {
+                position: relative;
+                padding: 1rem 0;
+                display: none;
+            }
+
+            .timeline.visible {
+                display: block;
+            }
+
+            .timeline::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 19px;
+                width: 2px;
+                height: 100%;
+                background-color: var(--border-light);
+            }
+
+            body.dark-mode .timeline::before {
+                background-color: var(--border-dark);
+            }
+
+            .timeline-item {
+                position: relative;
+                padding-left: 60px;
+                margin-bottom: 2.5rem;
+                transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+                opacity: 0;
+                transform: translateX(20px);
+            }
+
+            .timeline-item.visible {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            .timeline-item:last-child {
+                margin-bottom: 0;
+            }
+
+            .timeline-dot {
+                position: absolute;
+                left: 10px;
+                top: 5px;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background-color: white;
+                border: 3px solid var(--primary);
+            }
+
+            body.dark-mode .timeline-dot {
+                background-color: var(--bg-dark);
+            }
+
+            .timeline-date {
+                font-size: 0.85rem;
+                font-weight: 500;
+                color: var(--secondary);
+                margin-bottom: 0.5rem;
+            }
+
+            .timeline-certificate-card {
+                background: white;
+                border-radius: 16px;
+                padding: 24px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+                border: 1px solid var(--border-light);
+                position: relative;
+                overflow: hidden;
+            }
+
+            body.dark-mode .timeline-certificate-card {
+                background: var(--bg-dark);
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+                border-color: var(--border-dark);
+            }
+
+            .timeline-certificate-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                height: 4px;
+                background: var(--gradient);
+            }
+
+            .timeline-certificate-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            }
+
+            body.dark-mode .timeline-certificate-card:hover {
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            }
+
+            .timeline-certificate-title {
+                font-size: 1.125rem;
+                font-weight: 600;
+                color: var(--text-light);
+                text-decoration: none;
+                line-height: 1.4;
+                margin-bottom: 8px;
+                display: block;
+                transition: color 0.3s ease;
+            }
+
+            body.dark-mode .timeline-certificate-title {
+                color: var(--text-dark);
+            }
+
+            .timeline-certificate-title:hover {
+                color: var(--primary);
+            }
+
+            .timeline-certificate-meta {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+                margin-bottom: 16px;
+            }
+
+            .timeline-certificate-type {
+                color: var(--primary);
+                font-weight: 500;
+                font-size: 0.875rem;
+            }
+
+            .timeline-certificate-date {
+                color: var(--secondary);
+                font-size: 0.875rem;
+            }
+
+            /* Hide grid when timeline is active */
+            .certificates-grid.hidden {
+                display: none;
+            }
+
+            @media (max-width: 768px) {
+                .header h1 {
+                    font-size: 2rem;
+                }
+
+                .header .subtitle {
+                    font-size: 1rem;
+                }
+
+                .stats {
+                    margin: -20px 16px 32px;
+                    padding: 24px;
+                }
+
+                .search-container {
+                    grid-template-columns: 1fr;
+                }
+
+                .certificates-grid {
+                    grid-template-columns: 1fr;
+                    gap: 16px;
+                }
+
+                .container {
+                    padding: 0 16px;
+                }
+
+                .dark-mode-toggle {
+                    top: 16px;
+                    right: 16px;
+                    width: 40px;
+                    height: 40px;
+                }
+
+                .timeline::before {
+                    left: 9px;
+                }
+
+                .timeline-item {
+                    padding-left: 40px;
+                }
+
+                .timeline-dot {
+                    left: 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Loading Screen -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+        </div>
+
+        <!-- Dark Mode Toggle -->
+        <button id="dark-mode-toggle" class="dark-mode-toggle">
+            <i class="fas fa-moon"></i>
+        </button>
+
+        <!-- Header -->
+        <header class="header">
+            <img
+                src="./templates/Avatar.png"
+                alt="Ha Trong Nguyen"
+                class="avatar"
+            />
+            <h1>Ha Trong Nguyen</h1>
+            <p class="subtitle">Professional Certificates Portfolio</p>
+            <div class="social-links">
+                <a
+                    href="https://www.facebook.com/htrnguyenn"
+                    target="_blank"
+                    title="Facebook"
+                >
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a
+                    href="https://github.com/htrnguyen"
+                    target="_blank"
+                    title="GitHub"
+                >
+                    <i class="fab fa-github"></i>
+                </a>
+                <a
+                    href="https://www.linkedin.com/in/htrnguyen"
+                    target="_blank"
+                    title="LinkedIn"
+                >
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container">
+            <!-- Stats Section -->
+            <section class="stats fade-in">
+                <div class="stats-grid">
+                    <div>
+                        <div class="stat-number" id="total-certificates">
+                            0
+                        </div>
+                        <div class="stat-label">Total Certificates</div>
+                    </div>
+                    <div>
+                        <div class="stat-number" id="platforms-count">
+                             0 
+                        </div>
+                        <div class="stat-label">Platforms</div>
+                    </div>
+                    <div>
+                        <div class="stat-number" id="current-year">
+                             0 
+                        </div>
+                        <div class="stat-label">This Year</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Search Section -->
+            
+
+            <!-- Certificates Section -->
+            <section class="certificates-section fade-in">
+                <!-- View Toggle -->
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="grid">
+                        <i class="fas fa-th"></i>
+                        Grid View
+                    </button>
+                    <button class="view-btn" data-view="timeline">
+                        <i class="fas fa-stream"></i>
+                        Timeline View
+                    </button>
+                </div>
+
+                <!-- Grid View -->
+                <div class="certificates-grid" id="certificates-grid">
+                    
+                    <div
+                        class="empty-state"
+                        style="display: block; grid-column: 1 / -1"
+                    >
+                        <i class="fas fa-certificate"></i>
+                        <h3>No certificates available</h3>
+                        <p>
+                            Certificates will be loaded from Google Sheets when
+                            available.
+                        </p>
+                    </div>
+                    
+                </div>
+
+                <!-- Timeline View -->
+                <div class="timeline" id="timeline-container">
+                    
+                    <div class="empty-state" style="display: block">
+                        <i class="fas fa-certificate"></i>
+                        <h3>No certificates available</h3>
+                        <p>
+                            Certificates will be loaded from Google Sheets when
+                            available.
+                        </p>
+                    </div>
+                    
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <h3>Get in Touch</h3>
+                <p>
+                    Interested in collaboration or have questions? Feel free to
+                    reach out!
+                </p>
+                <div class="footer-links">
+                    <a href="mailto:hatrongnguyen04@gmail.com">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                    <a
+                        href="https://www.linkedin.com/in/htrnguyen"
+                        target="_blank"
+                    >
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/htrnguyen" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                </div>
+                <p>&copy; 2024 Ha Trong Nguyen. All rights reserved.</p>
+            </div>
+        </footer>
+
+        <script>
+            // Loading Animation
+            window.addEventListener('load', function () {
+                const loading = document.getElementById('loading')
+                loading.style.opacity = '0'
+                setTimeout(() => {
+                    loading.style.display = 'none'
+                }, 500)
+            })
+
+            // Dark Mode Toggle
+            const darkModeToggle = document.getElementById('dark-mode-toggle')
+            const body = document.body
+
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode')
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>'
+            }
+
+            darkModeToggle.addEventListener('click', function () {
+                body.classList.toggle('dark-mode')
+                if (body.classList.contains('dark-mode')) {
+                    darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>'
+                    localStorage.setItem('darkMode', 'enabled')
+                } else {
+                    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>'
+                    localStorage.setItem('darkMode', 'disabled')
+                }
+            })
+
+            // Fade-in Animation
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible')
+                        }
+                    })
+                },
+                {threshold: 0.1}
+            )
+
+            document.querySelectorAll('.fade-in').forEach((el) => {
+                observer.observe(el)
+            })
+
+            // Search and Filter
+            const searchInput = document.getElementById('search-input')
+            const platformFilter = document.getElementById('platform-filter')
+            const certificatesGrid =
+                document.getElementById('certificates-grid')
+            const timelineContainer =
+                document.getElementById('timeline-container')
+            const emptyState = document.getElementById('empty-state')
+            const certificateCards =
+                document.querySelectorAll('.certificate-card')
+            const timelineItems = document.querySelectorAll('.timeline-item')
+            const viewButtons = document.querySelectorAll('.view-btn')
+
+            let currentView = 'grid'
+
+            function updateStats() {
+                const visibleCards = document.querySelectorAll(
+                    '.certificate-card:not([style*="display: none"])'
+                )
+                const platforms = new Set()
+                const currentYear = new Date().getFullYear()
+                let currentYearCount = 0
+
+                visibleCards.forEach((card) => {
+                    const platform = card.dataset.platform
+                    if (platform) platforms.add(platform)
+
+                    const dateText =
+                        card.querySelector('.certificate-date').textContent
+                    if (dateText.includes(currentYear.toString())) {
+                        currentYearCount++
+                    }
+                })
+
+                document.getElementById('total-certificates').textContent =
+                    visibleCards.length
+                document.getElementById('platforms-count').textContent =
+                    platforms.size
+                document.getElementById('current-year').textContent =
+                    currentYearCount
+            }
+
+            function filterCertificates() {
+                const searchTerm = searchInput.value.toLowerCase()
+                const platform = platformFilter.value.toLowerCase()
+                let visibleCount = 0
+
+                // Filter grid view
+                certificateCards.forEach((card) => {
+                    const title = card.dataset.title
+                    const cardPlatform = card.dataset.platform
+
+                    const matchesSearch = title.includes(searchTerm)
+                    const matchesPlatform =
+                        !platform || cardPlatform.includes(platform)
+
+                    if (matchesSearch && matchesPlatform) {
+                        card.style.display = 'block'
+                        visibleCount++
+                    } else {
+                        card.style.display = 'none'
+                    }
+                })
+
+                // Filter timeline view
+                timelineItems.forEach((item) => {
+                    const title = item.dataset.title
+                    const itemPlatform = item.dataset.platform
+
+                    const matchesSearch = title.includes(searchTerm)
+                    const matchesPlatform =
+                        !platform || itemPlatform.includes(platform)
+
+                    if (matchesSearch && matchesPlatform) {
+                        item.style.display = 'block'
+                    } else {
+                        item.style.display = 'none'
+                    }
+                })
+
+                if (visibleCount === 0) {
+                    if (currentView === 'grid') {
+                        certificatesGrid.style.display = 'none'
+                    } else {
+                        timelineContainer.style.display = 'none'
+                    }
+                    emptyState.style.display = 'block'
+                } else {
+                    if (currentView === 'grid') {
+                        certificatesGrid.style.display = 'grid'
+                    } else {
+                        timelineContainer.style.display = 'block'
+                    }
+                    emptyState.style.display = 'none'
+                }
+
+                updateStats()
+
+                // Re-trigger timeline animations if timeline is active
+                if (currentView === 'timeline') {
+                    observeTimelineItems()
+                }
+            }
+
+            // View Toggle Functionality
+            function switchView(view) {
+                currentView = view
+
+                // Update button states
+                viewButtons.forEach((btn) => {
+                    btn.classList.remove('active')
+                    if (btn.dataset.view === view) {
+                        btn.classList.add('active')
+                    }
+                })
+
+                // Show/hide appropriate containers
+                if (view === 'grid') {
+                    certificatesGrid.classList.remove('hidden')
+                    timelineContainer.classList.remove('visible')
+                } else {
+                    certificatesGrid.classList.add('hidden')
+                    timelineContainer.classList.add('visible')
+                    // Trigger timeline animations
+                    setTimeout(() => {
+                        observeTimelineItems()
+                    }, 100)
+                }
+            }
+
+            // Timeline Animation Observer
+            function observeTimelineItems() {
+                const observer = new IntersectionObserver(
+                    (entries) => {
+                        entries.forEach((entry) => {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('visible')
+                                observer.unobserve(entry.target)
+                            }
+                        })
+                    },
+                    {threshold: 0.1}
+                )
+
+                document.querySelectorAll('.timeline-item').forEach((item) => {
+                    if (item.style.display !== 'none') {
+                        observer.observe(item)
+                    }
+                })
+            }
+
+            // Event Listeners
+            searchInput.addEventListener('input', filterCertificates)
+            platformFilter.addEventListener('change', filterCertificates)
+
+            // View toggle event listeners
+            viewButtons.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    switchView(btn.dataset.view)
+                })
+            })
+
+            // Initialize stats
+            updateStats()
+        </script>
+    </body>
+</html>
