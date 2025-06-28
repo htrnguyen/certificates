@@ -32,28 +32,41 @@ jobs:
                   echo "$GOOGLE_APPLICATION_CREDENTIALS" > credentials.json
 
             - name: Run script to fetch data and build site
-              run: python app.py
+              run: |
+                  python app.py
+                  echo "Checking if index.html was created:"
+                  ls -la index.html
+                  echo "File content preview:"
+                  head -20 index.html
 
             - name: Clean up credentials
               run: |
                   rm -f credentials.json
+
+            - name: Prepare files for deployment
+              run: |
+                  echo "Files in current directory:"
+                  ls -la
+                  echo "Creating deployment directory:"
+                  mkdir -p deploy
+                  cp index.html deploy/
+                  if [ -d "images" ]; then
+                      cp -r images deploy/
+                  fi
+                  if [ -d "templates" ]; then
+                      cp -r templates deploy/
+                  fi
+                  echo "Files in deploy directory:"
+                  ls -la deploy/
 
             - name: Deploy to GitHub Pages
               uses: peaceiris/actions-gh-pages@v3
               if: github.ref == 'refs/heads/main'
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
-                  publish_dir: ./
+                  publish_dir: ./deploy
                   publish_branch: gh-pages
                   force_orphan: true
                   user_name: 'github-actions[bot]'
                   user_email: 'github-actions[bot]@users.noreply.github.com'
                   commit_message: 'Deploy: Update certificates with latest data from Google Sheets'
-                  exclude_assets: |
-                      credentials.json
-                      .github/
-                      requirements.txt
-                      app.py
-                      templates/
-                      *.py
-                      .gitignore
