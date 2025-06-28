@@ -34,6 +34,10 @@ jobs:
             - name: Run script to fetch data and build site
               run: python app.py
 
+            - name: Clean up credentials
+              run: |
+                  rm -f credentials.json
+
             - name: Deploy to GitHub Pages
               uses: peaceiris/actions-gh-pages@v3
               if: github.ref == 'refs/heads/main'
@@ -45,6 +49,13 @@ jobs:
                   user_name: 'github-actions[bot]'
                   user_email: 'github-actions[bot]@users.noreply.github.com'
                   commit_message: 'Deploy: Update certificates with latest data from Google Sheets'
+                  exclude_assets: |
+                      credentials.json
+                      .github/
+                      requirements.txt
+                      app.py
+                      templates/
+                      *.py
 
             - name: Commit changes to main branch
               run: |
