@@ -209,16 +209,93 @@
                 box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
             }
 
-            .filter-select {
-                min-width: 150px;
+            body.dark-mode .search-input:focus,
+            body.dark-mode .filter-select:focus {
+                box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+            }
+
+            .certificates-section {
+                margin-bottom: 80px;
+            }
+
+            /* View Toggle */
+            .view-toggle {
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+                margin-bottom: 32px;
+            }
+
+            .view-btn {
+                padding: 12px 24px;
+                border: 2px solid var(--border-light);
+                background: white;
+                border-radius: 12px;
                 cursor: pointer;
+                transition: all 0.3s ease;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-size: 1rem;
+            }
+
+            body.dark-mode .view-btn {
+                background: var(--bg-dark);
+                border-color: var(--border-dark);
+                color: var(--text-dark);
+            }
+
+            .view-btn.active {
+                background: var(--primary);
+                color: white;
+                border-color: var(--primary);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            }
+
+            .view-btn:hover {
+                border-color: var(--primary);
+                transform: translateY(-1px);
+            }
+
+            .view-btn i {
+                font-size: 1.1rem;
+            }
+
+            .view-section {
+                display: none;
+            }
+
+            .view-section.active {
+                display: block;
             }
 
             .certificates-grid {
                 display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
                 gap: 24px;
-                margin-bottom: 48px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                font-weight: 700;
+                color: var(--text-light);
+                margin-bottom: 32px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                text-align: center;
+                justify-content: center;
+            }
+
+            body.dark-mode .section-title {
+                color: var(--text-dark);
+            }
+
+            .section-title i {
+                color: var(--primary);
+                font-size: 1.5rem;
             }
 
             .certificate-card {
@@ -249,7 +326,7 @@
             }
 
             .certificate-card:hover {
-                transform: translateY(-8px);
+                transform: translateY(-5px);
                 box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             }
 
@@ -258,48 +335,132 @@
             }
 
             .certificate-icon {
-                width: 48px;
-                height: 48px;
-                background: var(--gradient);
+                width: 60px;
+                height: 60px;
                 border-radius: 12px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                color: white;
-                font-size: 1.25rem;
                 margin-bottom: 16px;
+                font-size: 1.5rem;
+                background: var(--gradient);
+                color: white;
+            }
+
+            /* Platform-specific logo styles */
+            .platform-logo {
+                width: 60px;
+                height: 60px;
+                border-radius: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 16px;
+                background: var(--gradient);
+                color: white;
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            }
+
+            body.dark-mode .platform-logo {
+                background: var(--gradient);
+            }
+
+            .platform-logo:hover {
+                transform: scale(1.05);
+            }
+
+            .platform-logo::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(
+                    45deg,
+                    rgba(255, 255, 255, 0.1) 0%,
+                    rgba(255, 255, 255, 0.2) 100%
+                );
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            .platform-logo:hover::before {
+                opacity: 1;
+            }
+
+            .platform-logo i {
+                font-size: 1.5rem;
+                z-index: 1;
+                position: relative;
+            }
+
+            /* Unified platform styling - all platforms use the same gradient */
+            .platform-coursera,
+            .platform-udemy,
+            .platform-linkedin,
+            .platform-google,
+            .platform-microsoft,
+            .platform-aws,
+            .platform-azure,
+            .platform-gcp,
+            .platform-datacamp,
+            .platform-kaggle,
+            .platform-hackerrank,
+            .platform-leetcode,
+            .platform-freecodecamp,
+            .platform-edx,
+            .platform-mit,
+            .platform-stanford,
+            .platform-harvard,
+            .platform-ibm,
+            .platform-oracle,
+            .platform-salesforce,
+            .platform-adobe,
+            .platform-autodesk {
+                background: var(--gradient);
+                color: white;
             }
 
             .certificate-title {
-                font-size: 1.125rem;
+                font-size: 1.25rem;
                 font-weight: 600;
+                margin-bottom: 12px;
+                line-height: 1.4;
+            }
+
+            .certificate-title a {
                 color: var(--text-light);
                 text-decoration: none;
-                line-height: 1.4;
-                margin-bottom: 8px;
-                display: block;
                 transition: color 0.3s ease;
             }
 
-            body.dark-mode .certificate-title {
+            body.dark-mode .certificate-title a {
                 color: var(--text-dark);
             }
 
-            .certificate-title:hover {
+            .certificate-title a:hover {
                 color: var(--primary);
             }
 
             .certificate-meta {
                 display: flex;
                 flex-direction: column;
-                gap: 4px;
-                margin-bottom: 16px;
+                gap: 8px;
+                margin-bottom: 20px;
             }
 
             .certificate-type {
-                color: var(--primary);
-                font-weight: 500;
+                background: var(--primary);
+                color: white;
+                padding: 4px 12px;
+                border-radius: 20px;
                 font-size: 0.875rem;
+                font-weight: 500;
+                display: inline-block;
+                width: fit-content;
             }
 
             .certificate-date {
@@ -308,13 +469,13 @@
             }
 
             .btn {
-                padding: 8px 16px;
-                border-radius: 8px;
-                font-weight: 500;
-                text-decoration: none;
                 display: inline-flex;
                 align-items: center;
                 gap: 8px;
+                padding: 12px 20px;
+                border-radius: 8px;
+                text-decoration: none;
+                font-weight: 500;
                 transition: all 0.3s ease;
                 border: none;
                 cursor: pointer;
@@ -328,67 +489,37 @@
 
             .btn-primary:hover {
                 background: var(--primary-dark);
-                color: white;
                 transform: translateY(-1px);
             }
 
-            .footer {
-                background: var(--bg-dark);
-                color: var(--text-dark);
-                padding: 48px 0;
-                text-align: center;
-                margin-top: 80px;
+            .btn-secondary {
+                background: var(--secondary);
+                color: white;
             }
 
-            .footer-content {
-                max-width: 600px;
-                margin: 0 auto;
+            .btn-secondary:hover {
+                background: #475569;
+                transform: translateY(-1px);
             }
 
-            .footer h3 {
-                margin-bottom: 16px;
-                font-weight: 600;
-            }
-
-            .footer p {
-                margin-bottom: 24px;
-                opacity: 0.8;
-            }
-
-            .footer-links {
-                display: flex;
-                justify-content: center;
-                gap: 24px;
-                margin-bottom: 32px;
-            }
-
-            .footer-links a {
-                color: var(--text-dark);
-                text-decoration: none;
-                transition: color 0.3s ease;
-            }
-
-            .footer-links a:hover {
-                color: var(--primary);
-            }
-
-            .dark-mode-toggle {
+            .theme-toggle {
                 position: fixed;
                 top: 24px;
                 right: 24px;
-                background: rgba(255, 255, 255, 0.1);
-                border: none;
-                color: white;
                 width: 48px;
                 height: 48px;
                 border-radius: 50%;
+                background: rgba(255, 255, 255, 0.1);
+                border: none;
+                color: white;
+                font-size: 1.25rem;
                 cursor: pointer;
-                backdrop-filter: blur(10px);
                 transition: all 0.3s ease;
+                backdrop-filter: blur(10px);
                 z-index: 1000;
             }
 
-            .dark-mode-toggle:hover {
+            .theme-toggle:hover {
                 background: rgba(255, 255, 255, 0.2);
                 transform: scale(1.1);
             }
@@ -461,51 +592,10 @@
                 color: var(--text-dark);
             }
 
-            /* View Toggle */
-            .view-toggle {
-                display: flex;
-                justify-content: center;
-                gap: 8px;
-                margin-bottom: 24px;
-            }
-
-            .view-btn {
-                padding: 8px 16px;
-                border: 2px solid var(--border-light);
-                background: white;
-                border-radius: 8px;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                font-weight: 500;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-            }
-
-            body.dark-mode .view-btn {
-                background: var(--bg-dark);
-                border-color: var(--border-dark);
-                color: var(--text-dark);
-            }
-
-            .view-btn.active {
-                background: var(--primary);
-                color: white;
-                border-color: var(--primary);
-            }
-
-            .view-btn:hover {
-                border-color: var(--primary);
-            }
-
             /* Timeline Styles */
             .timeline {
                 position: relative;
                 padding: 1rem 0;
-                display: none;
-            }
-
-            .timeline.visible {
                 display: block;
             }
 
@@ -528,11 +618,6 @@
                 padding-left: 60px;
                 margin-bottom: 2.5rem;
                 transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-                opacity: 0;
-                transform: translateX(20px);
-            }
-
-            .timeline-item.visible {
                 opacity: 1;
                 transform: translateX(0);
             }
@@ -600,35 +685,42 @@
             }
 
             .timeline-certificate-title {
-                font-size: 1.125rem;
+                font-size: 1.25rem;
                 font-weight: 600;
+                margin-bottom: 12px;
+                line-height: 1.4;
+            }
+
+            .timeline-certificate-title a {
                 color: var(--text-light);
                 text-decoration: none;
-                line-height: 1.4;
-                margin-bottom: 8px;
-                display: block;
                 transition: color 0.3s ease;
             }
 
-            body.dark-mode .timeline-certificate-title {
+            body.dark-mode .timeline-certificate-title a {
                 color: var(--text-dark);
             }
 
-            .timeline-certificate-title:hover {
+            .timeline-certificate-title a:hover {
                 color: var(--primary);
             }
 
             .timeline-certificate-meta {
                 display: flex;
                 flex-direction: column;
-                gap: 4px;
-                margin-bottom: 16px;
+                gap: 8px;
+                margin-bottom: 20px;
             }
 
             .timeline-certificate-type {
-                color: var(--primary);
-                font-weight: 500;
+                background: var(--primary);
+                color: white;
+                padding: 4px 12px;
+                border-radius: 20px;
                 font-size: 0.875rem;
+                font-weight: 500;
+                display: inline-block;
+                width: fit-content;
             }
 
             .timeline-certificate-date {
@@ -636,9 +728,51 @@
                 font-size: 0.875rem;
             }
 
-            /* Hide grid when timeline is active */
-            .certificates-grid.hidden {
-                display: none;
+            .footer {
+                background: var(--bg-dark);
+                color: var(--text-dark);
+                padding: 60px 0 40px;
+                margin-top: 80px;
+            }
+
+            .footer-content {
+                text-align: center;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .footer-content h3 {
+                margin-bottom: 16px;
+                font-size: 1.5rem;
+            }
+
+            .footer-content p {
+                margin-bottom: 24px;
+                opacity: 0.8;
+            }
+
+            .footer-links {
+                display: flex;
+                justify-content: center;
+                gap: 24px;
+                margin-bottom: 32px;
+            }
+
+            .footer-links a {
+                color: var(--text-dark);
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: 12px 20px;
+                border-radius: 8px;
+                background: rgba(255, 255, 255, 0.1);
+                transition: all 0.3s ease;
+            }
+
+            .footer-links a:hover {
+                background: rgba(255, 255, 255, 0.2);
+                transform: translateY(-2px);
             }
 
             @media (max-width: 768px) {
@@ -651,12 +785,18 @@
                 }
 
                 .stats {
-                    margin: -20px 16px 32px;
+                    margin: -20px auto 32px;
                     padding: 24px;
+                }
+
+                .stats-grid {
+                    grid-template-columns: 1fr;
+                    gap: 16px;
                 }
 
                 .search-container {
                     grid-template-columns: 1fr;
+                    gap: 12px;
                 }
 
                 .certificates-grid {
@@ -664,27 +804,17 @@
                     gap: 16px;
                 }
 
-                .container {
-                    padding: 0 16px;
+                .certificate-card {
+                    padding: 20px;
                 }
 
-                .dark-mode-toggle {
-                    top: 16px;
-                    right: 16px;
-                    width: 40px;
-                    height: 40px;
+                .footer-links {
+                    flex-direction: column;
+                    gap: 12px;
                 }
 
-                .timeline::before {
-                    left: 9px;
-                }
-
-                .timeline-item {
-                    padding-left: 40px;
-                }
-
-                .timeline-dot {
-                    left: 0;
+                .footer-links a {
+                    justify-content: center;
                 }
             }
         </style>
@@ -696,7 +826,7 @@
         </div>
 
         <!-- Dark Mode Toggle -->
-        <button id="dark-mode-toggle" class="dark-mode-toggle">
+        <button id="dark-mode-toggle" class="theme-toggle">
             <i class="fas fa-moon"></i>
         </button>
 
@@ -810,396 +940,23 @@
                     </button>
                 </div>
 
-                <!-- Grid View -->
-                <div class="certificates-grid" id="certificates-grid">
-                     
-                    <article
-                        class="certificate-card"
-                        data-title="ultimate microsoft word - a complete guide to mastering microsoft word"
-                        data-platform="gitiho"
-                        data-date="2025-03-08"
-                    >
-                        <div class="certificate-icon">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <h3 class="certificate-title">
-                            <a
-                                href="https://gitiho.com/certificate/5InxEadVyhOs8Y0zkFowSq_fbBHQ/en"
-                                target="_blank"
-                                rel="noopener"
-                            >
-                                Ultimate Microsoft Word - A complete guide to mastering Microsoft Word
-                            </a>
-                        </h3>
-                        <div class="certificate-meta">
-                            <span class="certificate-type"
-                                >Gitiho</span
-                            >
-                            <span class="certificate-date"
-                                >Issued: 2025-03-08</span
-                            >
-                        </div>
-                        <a
-                            href="https://gitiho.com/certificate/5InxEadVyhOs8Y0zkFowSq_fbBHQ/en"
-                            target="_blank"
-                            rel="noopener"
-                            class="btn btn-primary"
+                <!-- Grid View Section -->
+                <div class="view-section active" id="grid-view">
+                    <div class="certificates-grid" id="certificates-grid">
+                         
+                        <article
+                            class="certificate-card"
+                            data-title="ultimate microsoft word - a complete guide to mastering microsoft word"
+                            data-platform="gitiho"
+                            data-date="2025-03-08"
                         >
-                            <i class="fas fa-external-link-alt"></i>
-                            View Certificate
-                        </a>
-                    </article>
-                    
-                    <article
-                        class="certificate-card"
-                        data-title="deep learning python project: cnn based image classification"
-                        data-platform="udemy"
-                        data-date="2025-02-11"
-                    >
-                        <div class="certificate-icon">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <h3 class="certificate-title">
-                            <a
-                                href="https://www.udemy.com/certificate/UC-4af3681b-91a0-456d-8172-a7a9443cd7cb/"
-                                target="_blank"
-                                rel="noopener"
+                            <div
+                                class="platform-logo"
+                                data-platform="gitiho"
                             >
-                                Deep Learning Python Project: CNN based Image Classification
-                            </a>
-                        </h3>
-                        <div class="certificate-meta">
-                            <span class="certificate-type"
-                                >Udemy</span
-                            >
-                            <span class="certificate-date"
-                                >Issued: 2025-02-11</span
-                            >
-                        </div>
-                        <a
-                            href="https://www.udemy.com/certificate/UC-4af3681b-91a0-456d-8172-a7a9443cd7cb/"
-                            target="_blank"
-                            rel="noopener"
-                            class="btn btn-primary"
-                        >
-                            <i class="fas fa-external-link-alt"></i>
-                            View Certificate
-                        </a>
-                    </article>
-                    
-                    <article
-                        class="certificate-card"
-                        data-title="30 days of code: the complete python bootcamp (vietnamese)"
-                        data-platform="udemy"
-                        data-date="2025-01-30"
-                    >
-                        <div class="certificate-icon">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <h3 class="certificate-title">
-                            <a
-                                href="https://www.udemy.com/certificate/UC-da3b14cf-efe6-44ed-9f7f-05a7ea575a69"
-                                target="_blank"
-                                rel="noopener"
-                            >
-                                30 Days of Code: The Complete Python Bootcamp (Vietnamese)
-                            </a>
-                        </h3>
-                        <div class="certificate-meta">
-                            <span class="certificate-type"
-                                >Udemy</span
-                            >
-                            <span class="certificate-date"
-                                >Issued: 2025-01-30</span
-                            >
-                        </div>
-                        <a
-                            href="https://www.udemy.com/certificate/UC-da3b14cf-efe6-44ed-9f7f-05a7ea575a69"
-                            target="_blank"
-                            rel="noopener"
-                            class="btn btn-primary"
-                        >
-                            <i class="fas fa-external-link-alt"></i>
-                            View Certificate
-                        </a>
-                    </article>
-                    
-                    <article
-                        class="certificate-card"
-                        data-title="prompt engineering for chatgpt"
-                        data-platform="coursera"
-                        data-date="2025-01-26"
-                    >
-                        <div class="certificate-icon">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <h3 class="certificate-title">
-                            <a
-                                href="https://www.coursera.org/account/accomplishments/certificate/HM09PAX0Q9WB"
-                                target="_blank"
-                                rel="noopener"
-                            >
-                                Prompt Engineering for ChatGPT
-                            </a>
-                        </h3>
-                        <div class="certificate-meta">
-                            <span class="certificate-type"
-                                >Coursera</span
-                            >
-                            <span class="certificate-date"
-                                >Issued: 2025-01-26</span
-                            >
-                        </div>
-                        <a
-                            href="https://www.coursera.org/account/accomplishments/certificate/HM09PAX0Q9WB"
-                            target="_blank"
-                            rel="noopener"
-                            class="btn btn-primary"
-                        >
-                            <i class="fas fa-external-link-alt"></i>
-                            View Certificate
-                        </a>
-                    </article>
-                    
-                    <article
-                        class="certificate-card"
-                        data-title="vỡ lòng về python - từ cơ bản đến xử lý ảnh, xử lý dữ liệu"
-                        data-platform="udemy"
-                        data-date="2024-12-16"
-                    >
-                        <div class="certificate-icon">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <h3 class="certificate-title">
-                            <a
-                                href="https://www.udemy.com/certificate/UC-1972ef3c-cb28-45be-8db8-7879c6caad40/"
-                                target="_blank"
-                                rel="noopener"
-                            >
-                                Vỡ lòng về Python - từ cơ bản đến xử lý ảnh, xử lý dữ liệu
-                            </a>
-                        </h3>
-                        <div class="certificate-meta">
-                            <span class="certificate-type"
-                                >Udemy</span
-                            >
-                            <span class="certificate-date"
-                                >Issued: 2024-12-16</span
-                            >
-                        </div>
-                        <a
-                            href="https://www.udemy.com/certificate/UC-1972ef3c-cb28-45be-8db8-7879c6caad40/"
-                            target="_blank"
-                            rel="noopener"
-                            class="btn btn-primary"
-                        >
-                            <i class="fas fa-external-link-alt"></i>
-                            View Certificate
-                        </a>
-                    </article>
-                    
-                    <article
-                        class="certificate-card"
-                        data-title="write smarter with overleaf and latex"
-                        data-platform="coursera"
-                        data-date="2024-12-16"
-                    >
-                        <div class="certificate-icon">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <h3 class="certificate-title">
-                            <a
-                                href="https://www.coursera.org/account/accomplishments/certificate/L2EWKPEE8AE6"
-                                target="_blank"
-                                rel="noopener"
-                            >
-                                Write Smarter with Overleaf and LaTeX
-                            </a>
-                        </h3>
-                        <div class="certificate-meta">
-                            <span class="certificate-type"
-                                >Coursera</span
-                            >
-                            <span class="certificate-date"
-                                >Issued: 2024-12-16</span
-                            >
-                        </div>
-                        <a
-                            href="https://www.coursera.org/account/accomplishments/certificate/L2EWKPEE8AE6"
-                            target="_blank"
-                            rel="noopener"
-                            class="btn btn-primary"
-                        >
-                            <i class="fas fa-external-link-alt"></i>
-                            View Certificate
-                        </a>
-                    </article>
-                    
-                    <article
-                        class="certificate-card"
-                        data-title="introduction to computer vision and image processing"
-                        data-platform="coursera"
-                        data-date="2024-09-07"
-                    >
-                        <div class="certificate-icon">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <h3 class="certificate-title">
-                            <a
-                                href="https://www.coursera.org/account/accomplishments/certificate/Z5J9Q1S7J114"
-                                target="_blank"
-                                rel="noopener"
-                            >
-                                Introduction to Computer Vision and Image Processing
-                            </a>
-                        </h3>
-                        <div class="certificate-meta">
-                            <span class="certificate-type"
-                                >Coursera</span
-                            >
-                            <span class="certificate-date"
-                                >Issued: 2024-09-07</span
-                            >
-                        </div>
-                        <a
-                            href="https://www.coursera.org/account/accomplishments/certificate/Z5J9Q1S7J114"
-                            target="_blank"
-                            rel="noopener"
-                            class="btn btn-primary"
-                        >
-                            <i class="fas fa-external-link-alt"></i>
-                            View Certificate
-                        </a>
-                    </article>
-                    
-                    <article
-                        class="certificate-card"
-                        data-title="c# tutorial (c sharp)"
-                        data-platform="coursera"
-                        data-date="2024-09-07"
-                    >
-                        <div class="certificate-icon">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <h3 class="certificate-title">
-                            <a
-                                href="https://www.coursera.org/account/accomplishments/certificate/8X0M0LX60T2O"
-                                target="_blank"
-                                rel="noopener"
-                            >
-                                C# Tutorial (C Sharp)
-                            </a>
-                        </h3>
-                        <div class="certificate-meta">
-                            <span class="certificate-type"
-                                >Coursera</span
-                            >
-                            <span class="certificate-date"
-                                >Issued: 2024-09-07</span
-                            >
-                        </div>
-                        <a
-                            href="https://www.coursera.org/account/accomplishments/certificate/8X0M0LX60T2O"
-                            target="_blank"
-                            rel="noopener"
-                            class="btn btn-primary"
-                        >
-                            <i class="fas fa-external-link-alt"></i>
-                            View Certificate
-                        </a>
-                    </article>
-                    
-                    <article
-                        class="certificate-card"
-                        data-title="notion with snow pro"
-                        data-platform="udemy"
-                        data-date="2024-09-07"
-                    >
-                        <div class="certificate-icon">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <h3 class="certificate-title">
-                            <a
-                                href="https://www.udemy.com/certificate/UC-0da5569c-b80b-44cc-b3e8-6d7ca56e4373"
-                                target="_blank"
-                                rel="noopener"
-                            >
-                                Notion with Snow Pro
-                            </a>
-                        </h3>
-                        <div class="certificate-meta">
-                            <span class="certificate-type"
-                                >Udemy</span
-                            >
-                            <span class="certificate-date"
-                                >Issued: 2024-09-07</span
-                            >
-                        </div>
-                        <a
-                            href="https://www.udemy.com/certificate/UC-0da5569c-b80b-44cc-b3e8-6d7ca56e4373"
-                            target="_blank"
-                            rel="noopener"
-                            class="btn btn-primary"
-                        >
-                            <i class="fas fa-external-link-alt"></i>
-                            View Certificate
-                        </a>
-                    </article>
-                    
-                    <article
-                        class="certificate-card"
-                        data-title="notion with snow"
-                        data-platform="udemy"
-                        data-date="2024-09-01"
-                    >
-                        <div class="certificate-icon">
-                            <i class="fas fa-certificate"></i>
-                        </div>
-                        <h3 class="certificate-title">
-                            <a
-                                href="https://www.udemy.com/certificate/UC-0369d75a-2158-4696-b2a3-3e90ab4e8e8b"
-                                target="_blank"
-                                rel="noopener"
-                            >
-                                Notion with Snow
-                            </a>
-                        </h3>
-                        <div class="certificate-meta">
-                            <span class="certificate-type"
-                                >Udemy</span
-                            >
-                            <span class="certificate-date"
-                                >Issued: 2024-09-01</span
-                            >
-                        </div>
-                        <a
-                            href="https://www.udemy.com/certificate/UC-0369d75a-2158-4696-b2a3-3e90ab4e8e8b"
-                            target="_blank"
-                            rel="noopener"
-                            class="btn btn-primary"
-                        >
-                            <i class="fas fa-external-link-alt"></i>
-                            View Certificate
-                        </a>
-                    </article>
-                     
-                </div>
-
-                <!-- Timeline View -->
-                <div class="timeline" id="timeline-container">
-                     
-                    <article
-                        class="timeline-item"
-                        data-title="ultimate microsoft word - a complete guide to mastering microsoft word"
-                        data-platform="gitiho"
-                        data-date="2025-03-08"
-                    >
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">
-                            2025-03-08
-                        </div>
-                        <div class="timeline-certificate-card">
-                            <h3 class="timeline-certificate-title">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <h3 class="certificate-title">
                                 <a
                                     href="https://gitiho.com/certificate/5InxEadVyhOs8Y0zkFowSq_fbBHQ/en"
                                     target="_blank"
@@ -1208,11 +965,11 @@
                                     Ultimate Microsoft Word - A complete guide to mastering Microsoft Word
                                 </a>
                             </h3>
-                            <div class="timeline-certificate-meta">
-                                <span class="timeline-certificate-type"
+                            <div class="certificate-meta">
+                                <span class="certificate-type"
                                     >Gitiho</span
                                 >
-                                <span class="timeline-certificate-date"
+                                <span class="certificate-date"
                                     >Issued: 2025-03-08</span
                                 >
                             </div>
@@ -1225,21 +982,21 @@
                                 <i class="fas fa-external-link-alt"></i>
                                 View Certificate
                             </a>
-                        </div>
-                    </article>
-                    
-                    <article
-                        class="timeline-item"
-                        data-title="deep learning python project: cnn based image classification"
-                        data-platform="udemy"
-                        data-date="2025-02-11"
-                    >
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">
-                            2025-02-11
-                        </div>
-                        <div class="timeline-certificate-card">
-                            <h3 class="timeline-certificate-title">
+                        </article>
+                        
+                        <article
+                            class="certificate-card"
+                            data-title="deep learning python project: cnn based image classification"
+                            data-platform="udemy"
+                            data-date="2025-02-11"
+                        >
+                            <div
+                                class="platform-logo"
+                                data-platform="udemy"
+                            >
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <h3 class="certificate-title">
                                 <a
                                     href="https://www.udemy.com/certificate/UC-4af3681b-91a0-456d-8172-a7a9443cd7cb/"
                                     target="_blank"
@@ -1248,11 +1005,11 @@
                                     Deep Learning Python Project: CNN based Image Classification
                                 </a>
                             </h3>
-                            <div class="timeline-certificate-meta">
-                                <span class="timeline-certificate-type"
+                            <div class="certificate-meta">
+                                <span class="certificate-type"
                                     >Udemy</span
                                 >
-                                <span class="timeline-certificate-date"
+                                <span class="certificate-date"
                                     >Issued: 2025-02-11</span
                                 >
                             </div>
@@ -1265,21 +1022,21 @@
                                 <i class="fas fa-external-link-alt"></i>
                                 View Certificate
                             </a>
-                        </div>
-                    </article>
-                    
-                    <article
-                        class="timeline-item"
-                        data-title="30 days of code: the complete python bootcamp (vietnamese)"
-                        data-platform="udemy"
-                        data-date="2025-01-30"
-                    >
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">
-                            2025-01-30
-                        </div>
-                        <div class="timeline-certificate-card">
-                            <h3 class="timeline-certificate-title">
+                        </article>
+                        
+                        <article
+                            class="certificate-card"
+                            data-title="30 days of code: the complete python bootcamp (vietnamese)"
+                            data-platform="udemy"
+                            data-date="2025-01-30"
+                        >
+                            <div
+                                class="platform-logo"
+                                data-platform="udemy"
+                            >
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <h3 class="certificate-title">
                                 <a
                                     href="https://www.udemy.com/certificate/UC-da3b14cf-efe6-44ed-9f7f-05a7ea575a69"
                                     target="_blank"
@@ -1288,11 +1045,11 @@
                                     30 Days of Code: The Complete Python Bootcamp (Vietnamese)
                                 </a>
                             </h3>
-                            <div class="timeline-certificate-meta">
-                                <span class="timeline-certificate-type"
+                            <div class="certificate-meta">
+                                <span class="certificate-type"
                                     >Udemy</span
                                 >
-                                <span class="timeline-certificate-date"
+                                <span class="certificate-date"
                                     >Issued: 2025-01-30</span
                                 >
                             </div>
@@ -1305,21 +1062,21 @@
                                 <i class="fas fa-external-link-alt"></i>
                                 View Certificate
                             </a>
-                        </div>
-                    </article>
-                    
-                    <article
-                        class="timeline-item"
-                        data-title="prompt engineering for chatgpt"
-                        data-platform="coursera"
-                        data-date="2025-01-26"
-                    >
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">
-                            2025-01-26
-                        </div>
-                        <div class="timeline-certificate-card">
-                            <h3 class="timeline-certificate-title">
+                        </article>
+                        
+                        <article
+                            class="certificate-card"
+                            data-title="prompt engineering for chatgpt"
+                            data-platform="coursera"
+                            data-date="2025-01-26"
+                        >
+                            <div
+                                class="platform-logo"
+                                data-platform="coursera"
+                            >
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <h3 class="certificate-title">
                                 <a
                                     href="https://www.coursera.org/account/accomplishments/certificate/HM09PAX0Q9WB"
                                     target="_blank"
@@ -1328,11 +1085,11 @@
                                     Prompt Engineering for ChatGPT
                                 </a>
                             </h3>
-                            <div class="timeline-certificate-meta">
-                                <span class="timeline-certificate-type"
+                            <div class="certificate-meta">
+                                <span class="certificate-type"
                                     >Coursera</span
                                 >
-                                <span class="timeline-certificate-date"
+                                <span class="certificate-date"
                                     >Issued: 2025-01-26</span
                                 >
                             </div>
@@ -1345,21 +1102,21 @@
                                 <i class="fas fa-external-link-alt"></i>
                                 View Certificate
                             </a>
-                        </div>
-                    </article>
-                    
-                    <article
-                        class="timeline-item"
-                        data-title="vỡ lòng về python - từ cơ bản đến xử lý ảnh, xử lý dữ liệu"
-                        data-platform="udemy"
-                        data-date="2024-12-16"
-                    >
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">
-                            2024-12-16
-                        </div>
-                        <div class="timeline-certificate-card">
-                            <h3 class="timeline-certificate-title">
+                        </article>
+                        
+                        <article
+                            class="certificate-card"
+                            data-title="vỡ lòng về python - từ cơ bản đến xử lý ảnh, xử lý dữ liệu"
+                            data-platform="udemy"
+                            data-date="2024-12-16"
+                        >
+                            <div
+                                class="platform-logo"
+                                data-platform="udemy"
+                            >
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <h3 class="certificate-title">
                                 <a
                                     href="https://www.udemy.com/certificate/UC-1972ef3c-cb28-45be-8db8-7879c6caad40/"
                                     target="_blank"
@@ -1368,11 +1125,11 @@
                                     Vỡ lòng về Python - từ cơ bản đến xử lý ảnh, xử lý dữ liệu
                                 </a>
                             </h3>
-                            <div class="timeline-certificate-meta">
-                                <span class="timeline-certificate-type"
+                            <div class="certificate-meta">
+                                <span class="certificate-type"
                                     >Udemy</span
                                 >
-                                <span class="timeline-certificate-date"
+                                <span class="certificate-date"
                                     >Issued: 2024-12-16</span
                                 >
                             </div>
@@ -1385,21 +1142,21 @@
                                 <i class="fas fa-external-link-alt"></i>
                                 View Certificate
                             </a>
-                        </div>
-                    </article>
-                    
-                    <article
-                        class="timeline-item"
-                        data-title="write smarter with overleaf and latex"
-                        data-platform="coursera"
-                        data-date="2024-12-16"
-                    >
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">
-                            2024-12-16
-                        </div>
-                        <div class="timeline-certificate-card">
-                            <h3 class="timeline-certificate-title">
+                        </article>
+                        
+                        <article
+                            class="certificate-card"
+                            data-title="write smarter with overleaf and latex"
+                            data-platform="coursera"
+                            data-date="2024-12-16"
+                        >
+                            <div
+                                class="platform-logo"
+                                data-platform="coursera"
+                            >
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <h3 class="certificate-title">
                                 <a
                                     href="https://www.coursera.org/account/accomplishments/certificate/L2EWKPEE8AE6"
                                     target="_blank"
@@ -1408,11 +1165,11 @@
                                     Write Smarter with Overleaf and LaTeX
                                 </a>
                             </h3>
-                            <div class="timeline-certificate-meta">
-                                <span class="timeline-certificate-type"
+                            <div class="certificate-meta">
+                                <span class="certificate-type"
                                     >Coursera</span
                                 >
-                                <span class="timeline-certificate-date"
+                                <span class="certificate-date"
                                     >Issued: 2024-12-16</span
                                 >
                             </div>
@@ -1425,21 +1182,21 @@
                                 <i class="fas fa-external-link-alt"></i>
                                 View Certificate
                             </a>
-                        </div>
-                    </article>
-                    
-                    <article
-                        class="timeline-item"
-                        data-title="introduction to computer vision and image processing"
-                        data-platform="coursera"
-                        data-date="2024-09-07"
-                    >
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">
-                            2024-09-07
-                        </div>
-                        <div class="timeline-certificate-card">
-                            <h3 class="timeline-certificate-title">
+                        </article>
+                        
+                        <article
+                            class="certificate-card"
+                            data-title="introduction to computer vision and image processing"
+                            data-platform="coursera"
+                            data-date="2024-09-07"
+                        >
+                            <div
+                                class="platform-logo"
+                                data-platform="coursera"
+                            >
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <h3 class="certificate-title">
                                 <a
                                     href="https://www.coursera.org/account/accomplishments/certificate/Z5J9Q1S7J114"
                                     target="_blank"
@@ -1448,11 +1205,11 @@
                                     Introduction to Computer Vision and Image Processing
                                 </a>
                             </h3>
-                            <div class="timeline-certificate-meta">
-                                <span class="timeline-certificate-type"
+                            <div class="certificate-meta">
+                                <span class="certificate-type"
                                     >Coursera</span
                                 >
-                                <span class="timeline-certificate-date"
+                                <span class="certificate-date"
                                     >Issued: 2024-09-07</span
                                 >
                             </div>
@@ -1465,21 +1222,21 @@
                                 <i class="fas fa-external-link-alt"></i>
                                 View Certificate
                             </a>
-                        </div>
-                    </article>
-                    
-                    <article
-                        class="timeline-item"
-                        data-title="c# tutorial (c sharp)"
-                        data-platform="coursera"
-                        data-date="2024-09-07"
-                    >
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">
-                            2024-09-07
-                        </div>
-                        <div class="timeline-certificate-card">
-                            <h3 class="timeline-certificate-title">
+                        </article>
+                        
+                        <article
+                            class="certificate-card"
+                            data-title="c# tutorial (c sharp)"
+                            data-platform="coursera"
+                            data-date="2024-09-07"
+                        >
+                            <div
+                                class="platform-logo"
+                                data-platform="coursera"
+                            >
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <h3 class="certificate-title">
                                 <a
                                     href="https://www.coursera.org/account/accomplishments/certificate/8X0M0LX60T2O"
                                     target="_blank"
@@ -1488,11 +1245,11 @@
                                     C# Tutorial (C Sharp)
                                 </a>
                             </h3>
-                            <div class="timeline-certificate-meta">
-                                <span class="timeline-certificate-type"
+                            <div class="certificate-meta">
+                                <span class="certificate-type"
                                     >Coursera</span
                                 >
-                                <span class="timeline-certificate-date"
+                                <span class="certificate-date"
                                     >Issued: 2024-09-07</span
                                 >
                             </div>
@@ -1505,21 +1262,21 @@
                                 <i class="fas fa-external-link-alt"></i>
                                 View Certificate
                             </a>
-                        </div>
-                    </article>
-                    
-                    <article
-                        class="timeline-item"
-                        data-title="notion with snow pro"
-                        data-platform="udemy"
-                        data-date="2024-09-07"
-                    >
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">
-                            2024-09-07
-                        </div>
-                        <div class="timeline-certificate-card">
-                            <h3 class="timeline-certificate-title">
+                        </article>
+                        
+                        <article
+                            class="certificate-card"
+                            data-title="notion with snow pro"
+                            data-platform="udemy"
+                            data-date="2024-09-07"
+                        >
+                            <div
+                                class="platform-logo"
+                                data-platform="udemy"
+                            >
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <h3 class="certificate-title">
                                 <a
                                     href="https://www.udemy.com/certificate/UC-0da5569c-b80b-44cc-b3e8-6d7ca56e4373"
                                     target="_blank"
@@ -1528,11 +1285,11 @@
                                     Notion with Snow Pro
                                 </a>
                             </h3>
-                            <div class="timeline-certificate-meta">
-                                <span class="timeline-certificate-type"
+                            <div class="certificate-meta">
+                                <span class="certificate-type"
                                     >Udemy</span
                                 >
-                                <span class="timeline-certificate-date"
+                                <span class="certificate-date"
                                     >Issued: 2024-09-07</span
                                 >
                             </div>
@@ -1545,21 +1302,21 @@
                                 <i class="fas fa-external-link-alt"></i>
                                 View Certificate
                             </a>
-                        </div>
-                    </article>
-                    
-                    <article
-                        class="timeline-item"
-                        data-title="notion with snow"
-                        data-platform="udemy"
-                        data-date="2024-09-01"
-                    >
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">
-                            2024-09-01
-                        </div>
-                        <div class="timeline-certificate-card">
-                            <h3 class="timeline-certificate-title">
+                        </article>
+                        
+                        <article
+                            class="certificate-card"
+                            data-title="notion with snow"
+                            data-platform="udemy"
+                            data-date="2024-09-01"
+                        >
+                            <div
+                                class="platform-logo"
+                                data-platform="udemy"
+                            >
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <h3 class="certificate-title">
                                 <a
                                     href="https://www.udemy.com/certificate/UC-0369d75a-2158-4696-b2a3-3e90ab4e8e8b"
                                     target="_blank"
@@ -1568,11 +1325,11 @@
                                     Notion with Snow
                                 </a>
                             </h3>
-                            <div class="timeline-certificate-meta">
-                                <span class="timeline-certificate-type"
+                            <div class="certificate-meta">
+                                <span class="certificate-type"
                                     >Udemy</span
                                 >
-                                <span class="timeline-certificate-date"
+                                <span class="certificate-date"
                                     >Issued: 2024-09-01</span
                                 >
                             </div>
@@ -1585,9 +1342,476 @@
                                 <i class="fas fa-external-link-alt"></i>
                                 View Certificate
                             </a>
-                        </div>
-                    </article>
-                     
+                        </article>
+                         
+                    </div>
+                </div>
+
+                <!-- Timeline View Section -->
+                <div class="view-section" id="timeline-view">
+                    <div class="timeline" id="timeline-container">
+                         
+                        <article
+                            class="timeline-item"
+                            data-title="ultimate microsoft word - a complete guide to mastering microsoft word"
+                            data-platform="gitiho"
+                            data-date="2025-03-08"
+                        >
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">
+                                2025-03-08
+                            </div>
+                            <div class="timeline-certificate-card">
+                                <div
+                                    class="platform-logo"
+                                    data-platform="gitiho"
+                                >
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <h3 class="timeline-certificate-title">
+                                    <a
+                                        href="https://gitiho.com/certificate/5InxEadVyhOs8Y0zkFowSq_fbBHQ/en"
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        Ultimate Microsoft Word - A complete guide to mastering Microsoft Word
+                                    </a>
+                                </h3>
+                                <div class="timeline-certificate-meta">
+                                    <span class="timeline-certificate-type"
+                                        >Gitiho</span
+                                    >
+                                    <span class="timeline-certificate-date"
+                                        >Issued: 2025-03-08</span
+                                    >
+                                </div>
+                                <a
+                                    href="https://gitiho.com/certificate/5InxEadVyhOs8Y0zkFowSq_fbBHQ/en"
+                                    target="_blank"
+                                    rel="noopener"
+                                    class="btn btn-primary"
+                                >
+                                    <i class="fas fa-external-link-alt"></i>
+                                    View Certificate
+                                </a>
+                            </div>
+                        </article>
+                        
+                        <article
+                            class="timeline-item"
+                            data-title="deep learning python project: cnn based image classification"
+                            data-platform="udemy"
+                            data-date="2025-02-11"
+                        >
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">
+                                2025-02-11
+                            </div>
+                            <div class="timeline-certificate-card">
+                                <div
+                                    class="platform-logo"
+                                    data-platform="udemy"
+                                >
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <h3 class="timeline-certificate-title">
+                                    <a
+                                        href="https://www.udemy.com/certificate/UC-4af3681b-91a0-456d-8172-a7a9443cd7cb/"
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        Deep Learning Python Project: CNN based Image Classification
+                                    </a>
+                                </h3>
+                                <div class="timeline-certificate-meta">
+                                    <span class="timeline-certificate-type"
+                                        >Udemy</span
+                                    >
+                                    <span class="timeline-certificate-date"
+                                        >Issued: 2025-02-11</span
+                                    >
+                                </div>
+                                <a
+                                    href="https://www.udemy.com/certificate/UC-4af3681b-91a0-456d-8172-a7a9443cd7cb/"
+                                    target="_blank"
+                                    rel="noopener"
+                                    class="btn btn-primary"
+                                >
+                                    <i class="fas fa-external-link-alt"></i>
+                                    View Certificate
+                                </a>
+                            </div>
+                        </article>
+                        
+                        <article
+                            class="timeline-item"
+                            data-title="30 days of code: the complete python bootcamp (vietnamese)"
+                            data-platform="udemy"
+                            data-date="2025-01-30"
+                        >
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">
+                                2025-01-30
+                            </div>
+                            <div class="timeline-certificate-card">
+                                <div
+                                    class="platform-logo"
+                                    data-platform="udemy"
+                                >
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <h3 class="timeline-certificate-title">
+                                    <a
+                                        href="https://www.udemy.com/certificate/UC-da3b14cf-efe6-44ed-9f7f-05a7ea575a69"
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        30 Days of Code: The Complete Python Bootcamp (Vietnamese)
+                                    </a>
+                                </h3>
+                                <div class="timeline-certificate-meta">
+                                    <span class="timeline-certificate-type"
+                                        >Udemy</span
+                                    >
+                                    <span class="timeline-certificate-date"
+                                        >Issued: 2025-01-30</span
+                                    >
+                                </div>
+                                <a
+                                    href="https://www.udemy.com/certificate/UC-da3b14cf-efe6-44ed-9f7f-05a7ea575a69"
+                                    target="_blank"
+                                    rel="noopener"
+                                    class="btn btn-primary"
+                                >
+                                    <i class="fas fa-external-link-alt"></i>
+                                    View Certificate
+                                </a>
+                            </div>
+                        </article>
+                        
+                        <article
+                            class="timeline-item"
+                            data-title="prompt engineering for chatgpt"
+                            data-platform="coursera"
+                            data-date="2025-01-26"
+                        >
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">
+                                2025-01-26
+                            </div>
+                            <div class="timeline-certificate-card">
+                                <div
+                                    class="platform-logo"
+                                    data-platform="coursera"
+                                >
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <h3 class="timeline-certificate-title">
+                                    <a
+                                        href="https://www.coursera.org/account/accomplishments/certificate/HM09PAX0Q9WB"
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        Prompt Engineering for ChatGPT
+                                    </a>
+                                </h3>
+                                <div class="timeline-certificate-meta">
+                                    <span class="timeline-certificate-type"
+                                        >Coursera</span
+                                    >
+                                    <span class="timeline-certificate-date"
+                                        >Issued: 2025-01-26</span
+                                    >
+                                </div>
+                                <a
+                                    href="https://www.coursera.org/account/accomplishments/certificate/HM09PAX0Q9WB"
+                                    target="_blank"
+                                    rel="noopener"
+                                    class="btn btn-primary"
+                                >
+                                    <i class="fas fa-external-link-alt"></i>
+                                    View Certificate
+                                </a>
+                            </div>
+                        </article>
+                        
+                        <article
+                            class="timeline-item"
+                            data-title="vỡ lòng về python - từ cơ bản đến xử lý ảnh, xử lý dữ liệu"
+                            data-platform="udemy"
+                            data-date="2024-12-16"
+                        >
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">
+                                2024-12-16
+                            </div>
+                            <div class="timeline-certificate-card">
+                                <div
+                                    class="platform-logo"
+                                    data-platform="udemy"
+                                >
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <h3 class="timeline-certificate-title">
+                                    <a
+                                        href="https://www.udemy.com/certificate/UC-1972ef3c-cb28-45be-8db8-7879c6caad40/"
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        Vỡ lòng về Python - từ cơ bản đến xử lý ảnh, xử lý dữ liệu
+                                    </a>
+                                </h3>
+                                <div class="timeline-certificate-meta">
+                                    <span class="timeline-certificate-type"
+                                        >Udemy</span
+                                    >
+                                    <span class="timeline-certificate-date"
+                                        >Issued: 2024-12-16</span
+                                    >
+                                </div>
+                                <a
+                                    href="https://www.udemy.com/certificate/UC-1972ef3c-cb28-45be-8db8-7879c6caad40/"
+                                    target="_blank"
+                                    rel="noopener"
+                                    class="btn btn-primary"
+                                >
+                                    <i class="fas fa-external-link-alt"></i>
+                                    View Certificate
+                                </a>
+                            </div>
+                        </article>
+                        
+                        <article
+                            class="timeline-item"
+                            data-title="write smarter with overleaf and latex"
+                            data-platform="coursera"
+                            data-date="2024-12-16"
+                        >
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">
+                                2024-12-16
+                            </div>
+                            <div class="timeline-certificate-card">
+                                <div
+                                    class="platform-logo"
+                                    data-platform="coursera"
+                                >
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <h3 class="timeline-certificate-title">
+                                    <a
+                                        href="https://www.coursera.org/account/accomplishments/certificate/L2EWKPEE8AE6"
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        Write Smarter with Overleaf and LaTeX
+                                    </a>
+                                </h3>
+                                <div class="timeline-certificate-meta">
+                                    <span class="timeline-certificate-type"
+                                        >Coursera</span
+                                    >
+                                    <span class="timeline-certificate-date"
+                                        >Issued: 2024-12-16</span
+                                    >
+                                </div>
+                                <a
+                                    href="https://www.coursera.org/account/accomplishments/certificate/L2EWKPEE8AE6"
+                                    target="_blank"
+                                    rel="noopener"
+                                    class="btn btn-primary"
+                                >
+                                    <i class="fas fa-external-link-alt"></i>
+                                    View Certificate
+                                </a>
+                            </div>
+                        </article>
+                        
+                        <article
+                            class="timeline-item"
+                            data-title="introduction to computer vision and image processing"
+                            data-platform="coursera"
+                            data-date="2024-09-07"
+                        >
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">
+                                2024-09-07
+                            </div>
+                            <div class="timeline-certificate-card">
+                                <div
+                                    class="platform-logo"
+                                    data-platform="coursera"
+                                >
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <h3 class="timeline-certificate-title">
+                                    <a
+                                        href="https://www.coursera.org/account/accomplishments/certificate/Z5J9Q1S7J114"
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        Introduction to Computer Vision and Image Processing
+                                    </a>
+                                </h3>
+                                <div class="timeline-certificate-meta">
+                                    <span class="timeline-certificate-type"
+                                        >Coursera</span
+                                    >
+                                    <span class="timeline-certificate-date"
+                                        >Issued: 2024-09-07</span
+                                    >
+                                </div>
+                                <a
+                                    href="https://www.coursera.org/account/accomplishments/certificate/Z5J9Q1S7J114"
+                                    target="_blank"
+                                    rel="noopener"
+                                    class="btn btn-primary"
+                                >
+                                    <i class="fas fa-external-link-alt"></i>
+                                    View Certificate
+                                </a>
+                            </div>
+                        </article>
+                        
+                        <article
+                            class="timeline-item"
+                            data-title="c# tutorial (c sharp)"
+                            data-platform="coursera"
+                            data-date="2024-09-07"
+                        >
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">
+                                2024-09-07
+                            </div>
+                            <div class="timeline-certificate-card">
+                                <div
+                                    class="platform-logo"
+                                    data-platform="coursera"
+                                >
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <h3 class="timeline-certificate-title">
+                                    <a
+                                        href="https://www.coursera.org/account/accomplishments/certificate/8X0M0LX60T2O"
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        C# Tutorial (C Sharp)
+                                    </a>
+                                </h3>
+                                <div class="timeline-certificate-meta">
+                                    <span class="timeline-certificate-type"
+                                        >Coursera</span
+                                    >
+                                    <span class="timeline-certificate-date"
+                                        >Issued: 2024-09-07</span
+                                    >
+                                </div>
+                                <a
+                                    href="https://www.coursera.org/account/accomplishments/certificate/8X0M0LX60T2O"
+                                    target="_blank"
+                                    rel="noopener"
+                                    class="btn btn-primary"
+                                >
+                                    <i class="fas fa-external-link-alt"></i>
+                                    View Certificate
+                                </a>
+                            </div>
+                        </article>
+                        
+                        <article
+                            class="timeline-item"
+                            data-title="notion with snow pro"
+                            data-platform="udemy"
+                            data-date="2024-09-07"
+                        >
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">
+                                2024-09-07
+                            </div>
+                            <div class="timeline-certificate-card">
+                                <div
+                                    class="platform-logo"
+                                    data-platform="udemy"
+                                >
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <h3 class="timeline-certificate-title">
+                                    <a
+                                        href="https://www.udemy.com/certificate/UC-0da5569c-b80b-44cc-b3e8-6d7ca56e4373"
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        Notion with Snow Pro
+                                    </a>
+                                </h3>
+                                <div class="timeline-certificate-meta">
+                                    <span class="timeline-certificate-type"
+                                        >Udemy</span
+                                    >
+                                    <span class="timeline-certificate-date"
+                                        >Issued: 2024-09-07</span
+                                    >
+                                </div>
+                                <a
+                                    href="https://www.udemy.com/certificate/UC-0da5569c-b80b-44cc-b3e8-6d7ca56e4373"
+                                    target="_blank"
+                                    rel="noopener"
+                                    class="btn btn-primary"
+                                >
+                                    <i class="fas fa-external-link-alt"></i>
+                                    View Certificate
+                                </a>
+                            </div>
+                        </article>
+                        
+                        <article
+                            class="timeline-item"
+                            data-title="notion with snow"
+                            data-platform="udemy"
+                            data-date="2024-09-01"
+                        >
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-date">
+                                2024-09-01
+                            </div>
+                            <div class="timeline-certificate-card">
+                                <div
+                                    class="platform-logo"
+                                    data-platform="udemy"
+                                >
+                                    <i class="fas fa-certificate"></i>
+                                </div>
+                                <h3 class="timeline-certificate-title">
+                                    <a
+                                        href="https://www.udemy.com/certificate/UC-0369d75a-2158-4696-b2a3-3e90ab4e8e8b"
+                                        target="_blank"
+                                        rel="noopener"
+                                    >
+                                        Notion with Snow
+                                    </a>
+                                </h3>
+                                <div class="timeline-certificate-meta">
+                                    <span class="timeline-certificate-type"
+                                        >Udemy</span
+                                    >
+                                    <span class="timeline-certificate-date"
+                                        >Issued: 2024-09-01</span
+                                    >
+                                </div>
+                                <a
+                                    href="https://www.udemy.com/certificate/UC-0369d75a-2158-4696-b2a3-3e90ab4e8e8b"
+                                    target="_blank"
+                                    rel="noopener"
+                                    class="btn btn-primary"
+                                >
+                                    <i class="fas fa-external-link-alt"></i>
+                                    View Certificate
+                                </a>
+                            </div>
+                        </article>
+                         
+                    </div>
                 </div>
             </section>
         </main>
@@ -1619,6 +1843,51 @@
         </footer>
 
         <script>
+            // Platform logo mapping - using consistent icons
+            const platformLogos = {
+                coursera: {icon: 'fas fa-graduation-cap'},
+                udemy: {icon: 'fas fa-play-circle'},
+                'linkedin learning': {icon: 'fab fa-linkedin'},
+                linkedin: {icon: 'fab fa-linkedin'},
+                google: {icon: 'fab fa-google'},
+                microsoft: {icon: 'fab fa-microsoft'},
+                aws: {icon: 'fab fa-aws'},
+                'amazon web services': {icon: 'fab fa-aws'},
+                azure: {icon: 'fas fa-cloud'},
+                gcp: {icon: 'fab fa-google'},
+                'google cloud': {icon: 'fab fa-google'},
+                datacamp: {icon: 'fas fa-chart-line'},
+                kaggle: {icon: 'fas fa-trophy'},
+                hackerrank: {icon: 'fas fa-code'},
+                leetcode: {icon: 'fas fa-code'},
+                freecodecamp: {icon: 'fas fa-free-code-camp'},
+                edx: {icon: 'fas fa-university'},
+                mit: {icon: 'fas fa-university'},
+                stanford: {icon: 'fas fa-university'},
+                harvard: {icon: 'fas fa-university'},
+                ibm: {icon: 'fas fa-cog'},
+                oracle: {icon: 'fas fa-database'},
+                salesforce: {icon: 'fas fa-cloud'},
+                adobe: {icon: 'fab fa-adobe'},
+                autodesk: {icon: 'fas fa-drafting-compass'},
+            }
+
+            // Apply platform logos
+            function applyPlatformLogos() {
+                const logoElements = document.querySelectorAll('.platform-logo')
+                logoElements.forEach((logo) => {
+                    const platform = logo.getAttribute('data-platform')
+                    const platformData = platformLogos[platform.toLowerCase()]
+
+                    if (platformData) {
+                        logo.innerHTML = `<i class="${platformData.icon}"></i>`
+                    } else {
+                        // Default certificate icon for unknown platforms
+                        logo.innerHTML = '<i class="fas fa-certificate"></i>'
+                    }
+                })
+            }
+
             // Loading Animation
             window.addEventListener('load', function () {
                 const loading = document.getElementById('loading')
@@ -1626,6 +1895,9 @@
                 setTimeout(() => {
                     loading.style.display = 'none'
                 }, 500)
+
+                // Apply platform logos after page loads
+                applyPlatformLogos()
             })
 
             // Dark Mode Toggle
@@ -1667,17 +1939,9 @@
             // Search and Filter
             const searchInput = document.getElementById('search-input')
             const platformFilter = document.getElementById('platform-filter')
-            const certificatesGrid =
-                document.getElementById('certificates-grid')
-            const timelineContainer =
-                document.getElementById('timeline-container')
-            const emptyState = document.getElementById('empty-state')
             const certificateCards =
                 document.querySelectorAll('.certificate-card')
             const timelineItems = document.querySelectorAll('.timeline-item')
-            const viewButtons = document.querySelectorAll('.view-btn')
-
-            let currentView = 'grid'
 
             function updateStats() {
                 const visibleCards = document.querySelectorAll(
@@ -1744,90 +2008,48 @@
                     }
                 })
 
-                if (visibleCount === 0) {
-                    if (currentView === 'grid') {
-                        certificatesGrid.style.display = 'none'
-                    } else {
-                        timelineContainer.style.display = 'none'
-                    }
-                    emptyState.style.display = 'block'
-                } else {
-                    if (currentView === 'grid') {
-                        certificatesGrid.style.display = 'grid'
-                    } else {
-                        timelineContainer.style.display = 'block'
-                    }
-                    emptyState.style.display = 'none'
-                }
-
                 updateStats()
-
-                // Re-trigger timeline animations if timeline is active
-                if (currentView === 'timeline') {
-                    observeTimelineItems()
-                }
-            }
-
-            // View Toggle Functionality
-            function switchView(view) {
-                currentView = view
-
-                // Update button states
-                viewButtons.forEach((btn) => {
-                    btn.classList.remove('active')
-                    if (btn.dataset.view === view) {
-                        btn.classList.add('active')
-                    }
-                })
-
-                // Show/hide appropriate containers
-                if (view === 'grid') {
-                    certificatesGrid.classList.remove('hidden')
-                    timelineContainer.classList.remove('visible')
-                } else {
-                    certificatesGrid.classList.add('hidden')
-                    timelineContainer.classList.add('visible')
-                    // Trigger timeline animations
-                    setTimeout(() => {
-                        observeTimelineItems()
-                    }, 100)
-                }
-            }
-
-            // Timeline Animation Observer
-            function observeTimelineItems() {
-                const observer = new IntersectionObserver(
-                    (entries) => {
-                        entries.forEach((entry) => {
-                            if (entry.isIntersecting) {
-                                entry.target.classList.add('visible')
-                                observer.unobserve(entry.target)
-                            }
-                        })
-                    },
-                    {threshold: 0.1}
-                )
-
-                document.querySelectorAll('.timeline-item').forEach((item) => {
-                    if (item.style.display !== 'none') {
-                        observer.observe(item)
-                    }
-                })
             }
 
             // Event Listeners
-            searchInput.addEventListener('input', filterCertificates)
-            platformFilter.addEventListener('change', filterCertificates)
-
-            // View toggle event listeners
-            viewButtons.forEach((btn) => {
-                btn.addEventListener('click', () => {
-                    switchView(btn.dataset.view)
-                })
-            })
+            if (searchInput) {
+                searchInput.addEventListener('input', filterCertificates)
+            }
+            if (platformFilter) {
+                platformFilter.addEventListener('change', filterCertificates)
+            }
 
             // Initialize stats
             updateStats()
+
+            // View Toggle
+            const viewButtons = document.querySelectorAll('.view-btn')
+            const gridView = document.getElementById('grid-view')
+            const timelineView = document.getElementById('timeline-view')
+
+            viewButtons.forEach((button) => {
+                button.addEventListener('click', function () {
+                    // Remove active class from all buttons
+                    viewButtons.forEach((btn) => {
+                        btn.classList.remove('active')
+                    })
+
+                    // Add active class to clicked button
+                    this.classList.add('active')
+
+                    // Get view from data attribute
+                    const view = this.getAttribute('data-view')
+
+                    // Show corresponding view
+                    if (view === 'grid') {
+                        gridView.classList.add('active')
+                        timelineView.classList.remove('active')
+                    } else if (view === 'timeline') {
+                        timelineView.classList.add('active')
+                        gridView.classList.remove('active')
+                    }
+                })
+            })
         </script>
     </body>
 </html>
