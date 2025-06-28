@@ -24,24 +24,34 @@ jobs:
             - name: Install dependencies
               run: |
                   pip install -r requirements.txt
+                  echo "Dependencies installed successfully"
 
             - name: Set up Google Credentials
               env:
                   GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
               run: |
+                  echo "Setting up Google credentials..."
                   echo "$GOOGLE_APPLICATION_CREDENTIALS" > credentials.json
+                  echo "Credentials file created, size: $(wc -c < credentials.json) bytes"
 
             - name: Run script to fetch data and build site
               run: |
+                  echo "Starting app.py execution..."
                   python app.py
+                  echo "App.py completed successfully"
                   echo "Checking if index.html was created:"
                   ls -la index.html
-                  echo "File content preview:"
-                  head -20 index.html
+                  echo "File size: $(wc -c < index.html) bytes"
+                  echo "File content preview (first 10 lines):"
+                  head -10 index.html
+                  echo "File content preview (last 10 lines):"
+                  tail -10 index.html
 
             - name: Clean up credentials
               run: |
+                  echo "Cleaning up credentials..."
                   rm -f credentials.json
+                  echo "Credentials cleaned up"
 
             - name: Prepare files for deployment
               run: |
@@ -53,12 +63,15 @@ jobs:
                   cp .nojekyll deploy/
                   if [ -d "images" ]; then
                       cp -r images deploy/
+                      echo "Images directory copied"
                   fi
                   if [ -d "templates" ]; then
                       cp -r templates deploy/
+                      echo "Templates directory copied"
                   fi
                   echo "Files in deploy directory:"
                   ls -la deploy/
+                  echo "Deploy directory size: $(du -sh deploy/)"
 
             - name: Deploy to GitHub Pages
               uses: peaceiris/actions-gh-pages@v3
