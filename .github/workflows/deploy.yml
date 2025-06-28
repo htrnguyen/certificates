@@ -1,4 +1,4 @@
-name: Deploy to main branch
+name: Deploy to GitHub Pages
 
 on:
     schedule:
@@ -6,17 +6,18 @@ on:
     push:
         branches:
             - main # Trigger on push to main branch
+    workflow_dispatch: # Allow manual trigger
 
 jobs:
-    build:
+    build-and-deploy:
         runs-on: ubuntu-latest
 
         steps:
             - name: Checkout repository
-              uses: actions/checkout@v2
+              uses: actions/checkout@v4
 
             - name: Set up Python
-              uses: actions/setup-python@v2
+              uses: actions/setup-python@v4
               with:
                   python-version: '3.11'
 
@@ -33,16 +34,28 @@ jobs:
             - name: Run script to fetch data and build site
               run: python app.py
 
-            - name: Commit and Push changes to main
+            - name: Deploy to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v3
+              if: github.ref == 'refs/heads/main'
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./
+                  publish_branch: gh-pages
+                  force_orphan: true
+                  user_name: 'github-actions[bot]'
+                  user_email: 'github-actions[bot]@users.noreply.github.com'
+                  commit_message: 'Deploy: Update certificates with latest data from Google Sheets'
+
+            - name: Commit changes to main branch
               run: |
                   git config --global user.email "github-actions[bot]@users.noreply.github.com"
                   git config --global user.name "GitHub Actions"
-                  git add index.html  # Thêm file HTML đã tạo vào staging
+                  git add index.html
                   if ! git diff --cached --quiet; then
                       git commit -m "Update index.html with latest data from Google Sheets"
-                      git push origin main  # Đẩy thay đổi lên nhánh main
+                      git push origin main
                   else
-                      echo "No changes detected in index.html, skipping commit and push."
+                      echo "No changes detected in index.html, skipping commit."
                   fi
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

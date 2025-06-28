@@ -17,7 +17,7 @@ data = sheet.get_all_records()
 # Reverse data to show the latest certificate first
 data.reverse()
 
-# Render HTML template 
+# Render HTML template
 with open("templates/index.html") as file_:
     template = Template(file_.read())
     rendered_html = template.render(data=data)
