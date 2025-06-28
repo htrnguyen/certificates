@@ -50,6 +50,7 @@ jobs:
                   echo "Creating deployment directory:"
                   mkdir -p deploy
                   cp index.html deploy/
+                  cp .nojekyll deploy/
                   if [ -d "images" ]; then
                       cp -r images deploy/
                   fi
