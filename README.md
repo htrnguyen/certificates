@@ -13,66 +13,16 @@ A beautiful, responsive portfolio website showcasing professional certificates w
 
 ## 🚀 Live Demo
 
-Visit: [Your GitHub Pages URL] (will be available after setup)
+Visit: [htrnguyen.github.io/certificates](https://htrnguyen.github.io/certificates)
 
-## 📋 Setup Instructions
+## 📋 What is this?
 
-### 1. Repository Setup
+This project automatically generates a professional portfolio website from your certificates stored in Google Sheets. It features:
 
-1. **Fork or Clone** this repository
-2. **Enable GitHub Pages**:
-    - Go to Settings → Pages
-    - Source: Deploy from a branch
-    - Branch: `gh-pages` (will be created by workflow)
-    - Save
-
-### 2. Google Sheets Setup
-
-1. **Create Google Sheet** with columns:
-
-    - `Certificate Name`
-    - `Certificate Type` (Platform name)
-    - `Date Issued`
-    - `URL`
-
-2. **Setup Google Service Account**:
-
-    - Go to [Google Cloud Console](https://console.cloud.google.com/)
-    - Create new project or select existing
-    - Enable Google Sheets API
-    - Create Service Account
-    - Download JSON credentials
-
-3. **Add Repository Secrets**:
-    - Go to Settings → Secrets and variables → Actions
-    - Add secret: `GOOGLE_CREDENTIALS`
-    - Value: Content of your JSON credentials file
-
-### 3. Update Configuration
-
-Edit `app.py`:
-
-```python
-# Update sheet name
-sheet = client.open("YOUR_SHEET_NAME").sheet1
-```
-
-### 4. Deploy
-
-1. **Push to main branch** - triggers automatic deployment
-2. **Manual trigger** - Go to Actions → Deploy to GitHub Pages → Run workflow
-
-## 🛠️ Local Development
-
-```bash
-# Install dependencies
-pip install -r requirements.txt
-
-# Run locally
-python app.py
-
-# Open index.html in browser
-```
+-   **Dynamic Content**: Pulls certificate data directly from Google Sheets
+-   **Modern UI**: Clean, responsive design with dark/light mode
+-   **Smart Organization**: View certificates in grid or timeline format
+-   **Easy Management**: Just update your Google Sheet and the website updates automatically
 
 ## 📁 Project Structure
 
