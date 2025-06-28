@@ -740,21 +740,37 @@
             <section class="stats fade-in">
                 <div class="stats-grid">
                     <div>
-                        <div class="stat-number" id="total-certificates">0</div>
+                        <div class="stat-number" id="total-certificates">
+                            {{ data|length if data else 0 }}
+                        </div>
                         <div class="stat-label">Total Certificates</div>
                     </div>
                     <div>
-                        <div class="stat-number" id="platforms-count">0</div>
+                        <div class="stat-number" id="platforms-count">
+                            {% if data %} {% set platforms = [] %} {% for row in
+                            data %} {% if row['Certificate Type'] not in
+                            platforms %} {% set _ =
+                            platforms.append(row['Certificate Type']) %} {%
+                            endif %} {% endfor %} {{ platforms|length }} {% else
+                            %} 0 {% endif %}
+                        </div>
                         <div class="stat-label">Platforms</div>
                     </div>
                     <div>
-                        <div class="stat-number" id="current-year">0</div>
+                        <div class="stat-number" id="current-year">
+                            {% if data %} {% set current_year = 2024 %} {% set
+                            year_count = 0 %} {% for row in data %} {% if
+                            current_year|string in row['Date Issued'] %} {% set
+                            year_count = year_count + 1 %} {% endif %} {% endfor
+                            %} {{ year_count }} {% else %} 0 {% endif %}
+                        </div>
                         <div class="stat-label">This Year</div>
                     </div>
                 </div>
             </section>
 
             <!-- Search Section -->
+            {% if data %}
             <section class="search-section fade-in">
                 <div class="search-container">
                     <div class="search-group">
@@ -781,6 +797,7 @@
                     </div>
                 </div>
             </section>
+            {% endif %}
 
             <!-- Certificates Section -->
             <section class="certificates-section fade-in">
@@ -798,7 +815,7 @@
 
                 <!-- Grid View -->
                 <div class="certificates-grid" id="certificates-grid">
-                    {% for row in data %}
+                    {% if data %} {% for row in data %}
                     <article
                         class="certificate-card"
                         data-title="{{ row['Certificate Name']|lower }}"
@@ -835,12 +852,24 @@
                             View Certificate
                         </a>
                     </article>
-                    {% endfor %}
+                    {% endfor %} {% else %}
+                    <div
+                        class="empty-state"
+                        style="display: block; grid-column: 1 / -1"
+                    >
+                        <i class="fas fa-certificate"></i>
+                        <h3>No certificates available</h3>
+                        <p>
+                            Certificates will be loaded from Google Sheets when
+                            available.
+                        </p>
+                    </div>
+                    {% endif %}
                 </div>
 
                 <!-- Timeline View -->
                 <div class="timeline" id="timeline-container">
-                    {% for row in data %}
+                    {% if data %} {% for row in data %}
                     <article
                         class="timeline-item"
                         data-title="{{ row['Certificate Name']|lower }}"
@@ -880,14 +909,16 @@
                             </a>
                         </div>
                     </article>
-                    {% endfor %}
-                </div>
-
-                <!-- Empty State -->
-                <div id="empty-state" class="empty-state" style="display: none">
-                    <i class="fas fa-search"></i>
-                    <h3>No certificates found</h3>
-                    <p>Try adjusting your search criteria or filters</p>
+                    {% endfor %} {% else %}
+                    <div class="empty-state" style="display: block">
+                        <i class="fas fa-certificate"></i>
+                        <h3>No certificates available</h3>
+                        <p>
+                            Certificates will be loaded from Google Sheets when
+                            available.
+                        </p>
+                    </div>
+                    {% endif %}
                 </div>
             </section>
         </main>
