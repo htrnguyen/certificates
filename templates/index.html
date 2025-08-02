@@ -10,7 +10,7 @@
             type="image/png"
         />
         <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
             rel="stylesheet"
         />
         <link
@@ -21,15 +21,33 @@
         <style>
             :root {
                 --primary: #000000;
+                --primary-dark: #1a1a1a;
                 --secondary: #666666;
-                --bg-light: #ffffff;
-                --bg-dark: #000000;
-                --text-light: #000000;
+                --accent: #333333;
+                --success: #10b981;
+                --warning: #f59e0b;
+                --info: #3b82f6;
+                --danger: #ef4444;
+                --bg-light: #fafafa;
+                --bg-dark: #0a0a0a;
+                --text-light: #1a1a1a;
                 --text-dark: #ffffff;
-                --border-light: #e0e0e0;
-                --border-dark: #333333;
-                --bg-pattern-light: #f8f9fa;
-                --bg-pattern-dark: #1a1a1a;
+                --border-light: #e5e7eb;
+                --border-dark: #374151;
+                --card-bg-light: #ffffff;
+                --card-bg-dark: #111111;
+                --gradient-primary: linear-gradient(135deg, #000000 0%, #333333 100%);
+                --gradient-secondary: linear-gradient(135deg, #666666 0%, #999999 100%);
+                --gradient-accent: linear-gradient(135deg, #333333 0%, #666666 100%);
+                --gradient-success: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                --gradient-warning: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+                --gradient-info: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+                --gradient-danger: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+                --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+                --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+                --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+                --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+                --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             }
 
             * {
@@ -43,36 +61,8 @@
                 line-height: 1.6;
                 color: var(--text-light);
                 background: var(--bg-light);
-                transition: all 0.3s ease;
-                position: relative;
                 min-height: 100vh;
-            }
-
-            /* Background Pattern */
-            body::before {
-                content: '';
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: radial-gradient(
-                        circle at 20% 80%,
-                        rgba(0, 0, 0, 0.02) 0%,
-                        transparent 50%
-                    ),
-                    radial-gradient(
-                        circle at 80% 20%,
-                        rgba(0, 0, 0, 0.02) 0%,
-                        transparent 50%
-                    ),
-                    radial-gradient(
-                        circle at 40% 40%,
-                        rgba(0, 0, 0, 0.01) 0%,
-                        transparent 50%
-                    );
-                z-index: -1;
-                pointer-events: none;
+                transition: all 0.3s ease;
             }
 
             body.dark-mode {
@@ -80,193 +70,175 @@
                 background: var(--bg-dark);
             }
 
-            body.dark-mode::before {
-                background: radial-gradient(
-                        circle at 20% 80%,
-                        rgba(255, 255, 255, 0.02) 0%,
-                        transparent 50%
-                    ),
-                    radial-gradient(
-                        circle at 80% 20%,
-                        rgba(255, 255, 255, 0.02) 0%,
-                        transparent 50%
-                    ),
-                    radial-gradient(
-                        circle at 40% 40%,
-                        rgba(255, 255, 255, 0.01) 0%,
-                        transparent 50%
-                    );
-            }
-
+            /* Clean Header */
             .header {
                 background: var(--bg-light);
-                color: var(--text-light);
-                padding: 60px 0 40px;
-                text-align: center;
-                border-bottom: 2px solid var(--border-light);
-                position: relative;
-                backdrop-filter: blur(10px);
-                box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+                padding: 1.5rem 0;
+                border-bottom: 1px solid var(--border-light);
             }
 
             body.dark-mode .header {
                 background: var(--bg-dark);
-                color: var(--text-dark);
                 border-bottom-color: var(--border-dark);
-                box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+            }
+
+            .header-container {
+                max-width: 1000px;
+                margin: 0 auto;
+                padding: 0 2rem;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .header-left {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
             }
 
             .avatar {
-                width: 80px;
-                height: 80px;
+                width: 50px;
+                height: 50px;
                 border-radius: 50%;
-                border: 3px solid var(--border-light);
-                margin: 0 auto 20px;
-                display: block;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                border: 2px solid var(--border-light);
+                transition: all 0.3s ease;
             }
 
             body.dark-mode .avatar {
                 border-color: var(--border-dark);
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             }
 
-            .header h1 {
-                font-size: 2rem;
+            .header-info h1 {
+                font-size: 1.3rem;
                 font-weight: 600;
-                margin-bottom: 8px;
+                color: var(--text-light);
+                margin-bottom: 0.25rem;
             }
 
-            .header .subtitle {
-                font-size: 1rem;
+            body.dark-mode .header-info h1 {
+                color: var(--text-dark);
+            }
+
+            .header-info p {
                 color: var(--secondary);
-                margin-bottom: 20px;
-            }
-
-            .stats-mini {
-                display: flex;
-                justify-content: center;
-                gap: 30px;
-                margin-bottom: 20px;
-                flex-wrap: wrap;
-            }
-
-            .stat-mini {
-                text-align: center;
-                padding: 8px 16px;
-                background: var(--border-light);
-                border-radius: 20px;
                 font-size: 0.85rem;
-                color: var(--secondary);
-                font-weight: 500;
             }
 
-            body.dark-mode .stat-mini {
-                background: var(--border-dark);
+            .header-stats {
+                display: flex;
+                gap: 1rem;
             }
 
-            .stat-mini .number {
-                display: block;
+            .stat-item {
+                text-align: center;
+                padding: 0.5rem 0.75rem;
+                background: var(--card-bg-light);
+                border: 1px solid var(--border-light);
+                transition: all 0.3s ease;
+            }
+
+            body.dark-mode .stat-item {
+                background: var(--card-bg-dark);
+                border-color: var(--border-dark);
+            }
+
+            .stat-item:hover {
+                transform: translateY(-1px);
+                box-shadow: var(--shadow-sm);
+            }
+
+            .stat-number {
                 font-size: 1.1rem;
                 font-weight: 600;
                 color: var(--primary);
-                margin-bottom: 2px;
+                display: block;
             }
 
-            body.dark-mode .stat-mini .number {
+            body.dark-mode .stat-number {
                 color: var(--text-dark);
             }
 
-            .social-links {
-                display: flex;
-                justify-content: center;
-                gap: 15px;
+            .stat-label {
+                font-size: 0.7rem;
+                color: var(--secondary);
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                margin-top: 0.25rem;
             }
 
-            .social-links a {
-                color: var(--text-light);
-                font-size: 1.2rem;
+            .theme-toggle {
                 width: 40px;
                 height: 40px;
-                border-radius: 50%;
-                background: var(--border-light);
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                background: var(--card-bg-light);
+                border: 1px solid var(--border-light);
+                color: var(--text-light);
+                font-size: 1rem;
+                cursor: pointer;
                 transition: all 0.3s ease;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             }
 
-            body.dark-mode .social-links a {
+            body.dark-mode .theme-toggle {
+                background: var(--card-bg-dark);
+                border-color: var(--border-dark);
                 color: var(--text-dark);
-                background: var(--border-dark);
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
             }
 
-            .social-links a:hover {
+            .theme-toggle:hover {
                 background: var(--primary);
-                color: var(--bg-light);
-                transform: translateY(-2px);
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                color: var(--card-bg-light);
+                transform: scale(1.05);
             }
 
-            body.dark-mode .social-links a:hover {
-                background: var(--text-dark);
-                color: var(--bg-dark);
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-            }
-
-            .container {
-                max-width: 800px;
+            /* Main Content */
+            .main {
+                max-width: 1200px;
                 margin: 0 auto;
-                padding: 0 20px;
-                position: relative;
-                z-index: 1;
+                padding: 2rem;
             }
 
+            /* Clean Search Section */
             .search-section {
                 background: var(--bg-light);
-                border: 1px solid var(--border-light);
-                border-radius: 12px;
-                padding: 25px;
-                margin: 30px auto;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-                backdrop-filter: blur(10px);
-                position: relative;
-            }
-
-            .search-section::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 3px;
-                background: linear-gradient(
-                    90deg,
-                    var(--primary) 0%,
-                    var(--secondary) 100%
-                );
+                padding: 1.5rem 0;
+                margin-bottom: 2rem;
+                border-bottom: 1px solid var(--border-light);
             }
 
             body.dark-mode .search-section {
                 background: var(--bg-dark);
-                border-color: var(--border-dark);
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+                border-bottom-color: var(--border-dark);
             }
 
-            .search-container {
+            .search-title {
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: var(--text-light);
+                margin-bottom: 1rem;
+                text-align: center;
+            }
+
+            body.dark-mode .search-title {
+                color: var(--text-dark);
+            }
+
+            .search-grid {
                 display: grid;
-                grid-template-columns: 1fr auto;
-                gap: 15px;
-                align-items: end;
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+                max-width: 600px;
+                margin: 0 auto;
+            }
+
+            .search-group {
+                position: relative;
             }
 
             .search-group label {
-                font-weight: 500;
+                font-weight: 600;
                 color: var(--text-light);
                 font-size: 0.9rem;
-                margin-bottom: 5px;
+                margin-bottom: 0.5rem;
                 display: block;
             }
 
@@ -276,23 +248,30 @@
 
             .search-input,
             .filter-select {
-                padding: 12px 16px;
-                border: 1px solid var(--border-light);
-                border-radius: 8px;
+                width: 100%;
+                padding: 0.75rem 1rem;
+                border: 2px solid var(--border-light);
+                border-radius: 10px;
                 font-size: 0.9rem;
                 transition: all 0.3s ease;
-                background: var(--bg-light);
-                width: 100%;
+                background: var(--card-bg-light);
                 color: var(--text-light);
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                box-shadow: var(--shadow-sm);
+                cursor: pointer;
+                appearance: none;
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+                background-position: right 0.75rem center;
+                background-repeat: no-repeat;
+                background-size: 14px;
+                padding-right: 2.5rem;
             }
 
             body.dark-mode .search-input,
             body.dark-mode .filter-select {
-                background: var(--bg-dark);
+                background-color: var(--card-bg-dark);
                 border-color: var(--border-dark);
                 color: var(--text-dark);
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%9ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
             }
 
             .search-input:focus,
@@ -308,362 +287,399 @@
                 box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
             }
 
+            /* Modern Timeline */
             .certificates-section {
-                margin-bottom: 60px;
-                position: relative;
+                margin-bottom: 2rem;
             }
 
             .section-title {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
                 font-weight: 600;
                 color: var(--text-light);
-                margin-bottom: 25px;
+                margin-bottom: 2rem;
                 text-align: center;
-                position: relative;
-            }
-
-            .section-title::after {
-                content: '';
-                position: absolute;
-                bottom: -8px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 60px;
-                height: 2px;
-                background: var(--primary);
             }
 
             body.dark-mode .section-title {
                 color: var(--text-dark);
             }
 
-            body.dark-mode .section-title::after {
-                background: var(--text-dark);
-            }
-
-            /* Timeline Styles */
             .timeline {
+                max-width: 900px;
+                margin: 0 auto;
                 position: relative;
-                padding: 0;
-                background: var(--bg-light);
-                border-radius: 16px;
-                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-                backdrop-filter: blur(10px);
-                border: 1px solid var(--border-light);
-                overflow: hidden;
-            }
-
-            body.dark-mode .timeline {
-                background: var(--bg-dark);
-                border-color: var(--border-dark);
-                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
             }
 
             .timeline::before {
                 content: '';
                 position: absolute;
+                left: 30px;
                 top: 0;
-                left: 20px;
+                bottom: 0;
                 width: 2px;
-                height: 100%;
-                background: linear-gradient(
-                    180deg,
-                    var(--primary) 0%,
-                    var(--secondary) 100%
-                );
+                background: var(--border-light);
             }
 
             body.dark-mode .timeline::before {
-                background: linear-gradient(
-                    180deg,
-                    var(--text-dark) 0%,
-                    var(--secondary) 100%
-                );
+                background: var(--border-dark);
             }
 
             .timeline-item {
                 position: relative;
-                padding: 20px 0 20px 60px;
-                margin: 0;
+                margin-bottom: 2rem;
+                padding-left: 80px;
                 transition: all 0.3s ease;
-                border-bottom: 1px solid var(--border-light);
             }
 
             .timeline-item:last-child {
-                border-bottom: none;
-            }
-
-            body.dark-mode .timeline-item {
-                border-bottom-color: var(--border-dark);
-            }
-
-            .timeline-item:hover {
-                background: rgba(0, 0, 0, 0.02);
-            }
-
-            body.dark-mode .timeline-item:hover {
-                background: rgba(255, 255, 255, 0.02);
+                margin-bottom: 0;
             }
 
             .timeline-dot {
                 position: absolute;
-                left: 11px;
-                top: 25px;
-                width: 18px;
-                height: 18px;
-                border-radius: 50%;
-                background-color: var(--bg-light);
+                left: 21px;
+                top: 0.5rem;
+                width: 20px;
+                height: 20px;
+                background: var(--card-bg-light);
                 border: 3px solid var(--primary);
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                border-radius: 50%;
                 transition: all 0.3s ease;
             }
 
             body.dark-mode .timeline-dot {
-                background-color: var(--bg-dark);
-                border-color: var(--text-dark);
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+                background: var(--card-bg-dark);
             }
 
             .timeline-item:hover .timeline-dot {
+                background: var(--primary);
                 transform: scale(1.2);
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+                box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
             }
 
             body.dark-mode .timeline-item:hover .timeline-dot {
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+                box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+            }
+
+            .timeline-content {
+                background: var(--card-bg-light);
+                border: 1px solid var(--border-light);
+                padding: 1.5rem;
+                transition: all 0.3s ease;
+                cursor: pointer;
+            }
+
+            body.dark-mode .timeline-content {
+                background: var(--card-bg-dark);
+                border-color: var(--border-dark);
+            }
+
+            .timeline-item:hover .timeline-content {
+                transform: translateX(8px);
+                box-shadow: var(--shadow-md);
             }
 
             .timeline-date {
                 font-size: 0.8rem;
-                font-weight: 500;
-                color: var(--secondary);
-                margin-bottom: 8px;
-                display: inline-block;
-                background: var(--border-light);
-                padding: 4px 8px;
-                border-radius: 12px;
-            }
-
-            body.dark-mode .timeline-date {
-                background: var(--border-dark);
-            }
-
-            .timeline-certificate-card {
-                background: transparent;
-                border: none;
-                border-radius: 0;
-                padding: 0;
-                box-shadow: none;
-                transition: all 0.3s ease;
-            }
-
-            body.dark-mode .timeline-certificate-card {
-                background: transparent;
-                border: none;
-                box-shadow: none;
-            }
-
-            .timeline-certificate-card:hover {
-                box-shadow: none;
-            }
-
-            .timeline-certificate-title {
-                font-size: 1.1rem;
                 font-weight: 600;
-                margin-bottom: 10px;
+                color: var(--primary);
+                margin-bottom: 0.75rem;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            .timeline-title {
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: var(--text-light);
+                margin-bottom: 0.75rem;
                 line-height: 1.4;
             }
 
-            .timeline-certificate-title a {
-                color: var(--text-light);
+            body.dark-mode .timeline-title {
+                color: var(--text-dark);
+            }
+
+            .timeline-title a {
+                color: inherit;
                 text-decoration: none;
                 transition: color 0.3s ease;
             }
 
-            body.dark-mode .timeline-certificate-title a {
-                color: var(--text-dark);
-            }
-
-            .timeline-certificate-title a:hover {
+            .timeline-title a:hover {
                 color: var(--primary);
             }
 
-            body.dark-mode .timeline-certificate-title a:hover {
+            .timeline-meta {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                flex-wrap: wrap;
+            }
+
+            .timeline-platform {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.7rem;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                color: var(--text-light);
+                background: var(--border-light);
+                border: 1px solid var(--border-light);
+                transition: all 0.3s ease;
+            }
+
+            body.dark-mode .timeline-platform {
                 color: var(--text-dark);
-                text-decoration: underline;
+                background: var(--border-dark);
+                border-color: var(--border-dark);
+            }
+
+            .timeline-platform:hover {
+                background: var(--primary);
+                color: white;
+            }
+
+
+
+            .certificate-link {
+                color: var(--text-light);
+                text-decoration: none;
+                transition: all 0.3s ease;
+                position: relative;
+                display: inline-block;
+                font-weight: 700;
+                font-size: 1.4rem;
+                line-height: 1.5;
+                border-bottom: 3px solid transparent;
+                padding-bottom: 2px;
+            }
+
+            body.dark-mode .certificate-link {
+                color: var(--text-dark);
+            }
+
+            .certificate-link:hover {
+                color: var(--primary);
+                border-bottom-color: var(--primary);
+                transform: translateY(-1px);
+            }
+
+            .certificate-link::after {
+                content: ' ↗';
+                font-size: 0.6em;
+                opacity: 0.5;
+                margin-left: 0.3rem;
+                transition: all 0.3s ease;
+                font-weight: 400;
+            }
+
+            .certificate-link:hover::after {
+                opacity: 1;
+                transform: translateX(3px);
+                color: var(--primary);
             }
 
             .timeline-certificate-meta {
+                margin-bottom: 1.5rem;
+            }
+
+            .certificate-info-line {
                 display: flex;
-                flex-direction: column;
-                gap: 6px;
-                margin-bottom: 15px;
+                align-items: center;
+                gap: 0.75rem;
+                flex-wrap: wrap;
+            }
+
+            .separator {
+                color: var(--secondary);
+                font-weight: 500;
+                font-size: 0.9rem;
             }
 
             .timeline-certificate-type {
-                background: var(--primary);
-                color: var(--bg-light);
-                padding: 3px 10px;
-                border-radius: 15px;
-                font-size: 0.8rem;
-                font-weight: 500;
+                padding: 0.4rem 0.8rem;
+                border-radius: 12px;
+                font-size: 0.75rem;
+                font-weight: 600;
                 display: inline-block;
                 width: fit-content;
+                text-transform: uppercase;
+                letter-spacing: 0.8px;
+                color: var(--text-light);
+                background: var(--border-light);
+                border: 1px solid var(--border-light);
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
             }
 
             body.dark-mode .timeline-certificate-type {
+                color: var(--text-dark);
+                background: var(--border-dark);
+                border-color: var(--border-dark);
+            }
+
+            .timeline-certificate-type:hover {
+                transform: translateY(-1px);
+                box-shadow: var(--shadow-sm);
+                background: var(--primary);
+                color: white;
+            }
+
+            body.dark-mode .timeline-certificate-type:hover {
                 background: var(--text-dark);
                 color: var(--bg-dark);
             }
 
+            /* Platform badges - Simple & Clean */
+            .platform-coursera,
+            .platform-udemy,
+            .platform-linkedin,
+            .platform-google,
+            .platform-microsoft,
+            .platform-aws,
+            .platform-azure,
+            .platform-gcp,
+            .platform-datacamp,
+            .platform-kaggle,
+            .platform-hackerrank,
+            .platform-leetcode,
+            .platform-freecodecamp,
+            .platform-edx,
+            .platform-mit,
+            .platform-stanford,
+            .platform-harvard,
+            .platform-ibm,
+            .platform-oracle,
+            .platform-salesforce,
+            .platform-adobe,
+            .platform-autodesk,
+            .platform-omnio {
+                /* All platforms use the same simple styling defined in .timeline-certificate-type */
+            }
+
             .timeline-certificate-date {
                 color: var(--secondary);
-                font-size: 0.8rem;
+                font-size: 0.9rem;
+                font-weight: 500;
+            }
+
+            .timeline-actions {
+                display: flex;
+                gap: 0.75rem;
             }
 
             .btn {
                 display: inline-flex;
                 align-items: center;
-                gap: 6px;
-                padding: 8px 16px;
-                border-radius: 6px;
+                gap: 0.5rem;
+                padding: 0.75rem 1.25rem;
+                border-radius: 10px;
                 text-decoration: none;
-                font-weight: 500;
+                font-weight: 600;
                 transition: all 0.3s ease;
-                border: 1px solid var(--border-light);
+                border: none;
                 cursor: pointer;
-                font-size: 0.8rem;
-                background: var(--bg-light);
+                font-size: 0.9rem;
+                background: var(--gradient-primary);
+                color: white;
+                box-shadow: var(--shadow-md);
+            }
+
+            .btn:hover {
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-lg);
+            }
+
+            .btn-secondary {
+                background: var(--border-light);
                 color: var(--text-light);
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             }
 
-            body.dark-mode .btn {
-                background: var(--bg-dark);
+            body.dark-mode .btn-secondary {
+                background: var(--border-dark);
                 color: var(--text-dark);
-                border-color: var(--border-dark);
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-            }
-
-            .btn-primary {
-                background: var(--primary);
-                color: var(--bg-light);
-                border-color: var(--primary);
-            }
-
-            body.dark-mode .btn-primary {
-                background: var(--text-dark);
-                color: var(--bg-dark);
-                border-color: var(--text-dark);
-            }
-
-            .btn-primary:hover {
-                opacity: 0.8;
-                transform: translateY(-1px);
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            }
-
-            body.dark-mode .btn-primary:hover {
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-            }
-
-            .theme-toggle {
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                background: var(--bg-light);
-                border: 1px solid var(--border-light);
-                color: var(--text-light);
-                font-size: 1rem;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                z-index: 1000;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-                backdrop-filter: blur(10px);
-            }
-
-            body.dark-mode .theme-toggle {
-                background: var(--bg-dark);
-                border-color: var(--border-dark);
-                color: var(--text-dark);
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            }
-
-            .theme-toggle:hover {
-                background: var(--primary);
-                color: var(--bg-light);
-                transform: scale(1.1);
-                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-            }
-
-            body.dark-mode .theme-toggle:hover {
-                background: var(--text-dark);
-                color: var(--bg-dark);
-                box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
             }
 
             .empty-state {
                 text-align: center;
-                padding: 60px 20px;
+                padding: 4rem 2rem;
                 color: var(--secondary);
+                background: var(--card-bg-light);
+                border-radius: 16px;
+                box-shadow: var(--shadow-lg);
+                border: 1px solid var(--border-light);
+            }
+
+            body.dark-mode .empty-state {
+                background: var(--card-bg-dark);
+                border-color: var(--border-dark);
             }
 
             .empty-state i {
-                font-size: 3rem;
-                margin-bottom: 20px;
+                font-size: 4rem;
+                margin-bottom: 1.5rem;
                 opacity: 0.5;
+                color: var(--primary);
             }
 
             .empty-state h3 {
-                margin-bottom: 10px;
+                margin-bottom: 1rem;
                 color: var(--text-light);
+                font-size: 1.5rem;
+                font-weight: 600;
             }
 
             body.dark-mode .empty-state h3 {
                 color: var(--text-dark);
             }
 
+            .empty-state p {
+                font-size: 1rem;
+                opacity: 0.8;
+            }
+
+            /* Footer */
             .footer {
-                background: var(--bg-light);
+                background: var(--card-bg-light);
                 color: var(--text-light);
-                padding: 40px 0 30px;
-                margin-top: 60px;
+                padding: 3rem 0 2rem;
+                margin-top: 4rem;
                 border-top: 1px solid var(--border-light);
-                position: relative;
-                backdrop-filter: blur(10px);
             }
 
             body.dark-mode .footer {
-                background: var(--bg-dark);
+                background: var(--card-bg-dark);
                 color: var(--text-dark);
                 border-top-color: var(--border-dark);
             }
 
             .footer-content {
                 text-align: center;
-                max-width: 500px;
+                max-width: 600px;
                 margin: 0 auto;
+                padding: 0 2rem;
             }
 
             .footer-content h3 {
-                margin-bottom: 10px;
-                font-size: 1.2rem;
+                margin-bottom: 1rem;
+                font-size: 1.5rem;
+                font-weight: 600;
             }
 
             .footer-content p {
-                margin-bottom: 20px;
+                margin-bottom: 2rem;
                 opacity: 0.8;
-                font-size: 0.9rem;
+                font-size: 1rem;
             }
 
             .footer-links {
                 display: flex;
                 justify-content: center;
-                gap: 15px;
-                margin-bottom: 20px;
+                gap: 1rem;
+                margin-bottom: 2rem;
+                flex-wrap: wrap;
             }
 
             .footer-links a {
@@ -671,172 +687,103 @@
                 text-decoration: none;
                 display: flex;
                 align-items: center;
-                gap: 6px;
-                padding: 8px 15px;
-                border-radius: 6px;
+                gap: 0.5rem;
+                padding: 0.75rem 1.25rem;
+                border-radius: 10px;
                 background: var(--border-light);
                 transition: all 0.3s ease;
                 font-size: 0.9rem;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                font-weight: 500;
+                box-shadow: var(--shadow-sm);
             }
 
             body.dark-mode .footer-links a {
                 color: var(--text-dark);
                 background: var(--border-dark);
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
             }
 
             .footer-links a:hover {
-                background: var(--primary);
-                color: var(--bg-light);
+                background: var(--gradient-primary);
+                color: white;
                 transform: translateY(-2px);
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            }
-
-            body.dark-mode .footer-links a:hover {
-                background: var(--text-dark);
-                color: var(--bg-dark);
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+                box-shadow: var(--shadow-md);
             }
 
             /* Responsive Design */
-            @media (max-width: 1200px) {
-                .container {
-                    max-width: 900px;
+            @media (max-width: 1024px) {
+                .header-container {
+                    flex-direction: column;
+                    gap: 1rem;
+                    text-align: center;
                 }
-            }
 
-            @media (max-width: 992px) {
-                .container {
-                    max-width: 700px;
+                .header-stats {
+                    justify-content: center;
+                }
+
+                .certificates-grid {
+                    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
                 }
             }
 
             @media (max-width: 768px) {
-                .container {
-                    max-width: 100%;
-                    padding: 0 15px;
+                .main {
+                    padding: 1rem;
                 }
 
-                .header h1 {
-                    font-size: 1.5rem;
+                .header-container {
+                    padding: 0 1rem;
                 }
 
-                .header .subtitle {
-                    font-size: 0.9rem;
-                }
-
-                .stats-mini {
-                    gap: 20px;
-                }
-
-                .stat-mini {
-                    padding: 6px 12px;
-                    font-size: 0.8rem;
-                }
-
-                .search-container {
+                .search-grid {
                     grid-template-columns: 1fr;
-                    gap: 10px;
-                }
-
-                .timeline-item {
-                    padding: 15px 0 15px 50px;
+                    gap: 1rem;
                 }
 
                 .timeline::before {
-                    left: 15px;
+                    left: 20px;
+                }
+
+                .timeline-item {
+                    padding-left: 60px;
                 }
 
                 .timeline-dot {
-                    left: 6px;
-                    top: 20px;
+                    left: 11px;
+                    width: 18px;
+                    height: 18px;
+                }
+
+                .timeline-content {
+                    padding: 1rem;
+                }
+
+                .header-stats {
+                    flex-wrap: wrap;
+                    gap: 1rem;
+                }
+
+                .stat-item {
+                    padding: 0.5rem 0.75rem;
+                }
+
+                .stat-number {
+                    font-size: 1rem;
                 }
 
                 .footer-links {
                     flex-direction: column;
-                    gap: 10px;
+                    gap: 0.75rem;
                 }
 
                 .footer-links a {
                     justify-content: center;
                 }
-
-                .theme-toggle {
-                    top: 15px;
-                    right: 15px;
-                    width: 35px;
-                    height: 35px;
-                    font-size: 0.9rem;
-                }
             }
 
             @media (max-width: 480px) {
                 .header {
-                    padding: 40px 0 30px;
-                }
-
-                .avatar {
-                    width: 60px;
-                    height: 60px;
-                }
-
-                .header h1 {
-                    font-size: 1.3rem;
-                }
-
-                .stats-mini {
-                    gap: 15px;
-                    flex-direction: column;
-                    align-items: center;
-                }
-
-                .stat-mini {
-                    padding: 5px 10px;
-                    font-size: 0.75rem;
-                }
-
-                .search-section {
-                    padding: 20px;
-                    margin: 20px auto;
-                }
-
-                .section-title {
-                    font-size: 1.3rem;
-                }
-
-                .timeline-item {
-                    padding: 12px 0 12px 45px;
-                }
-
-                .timeline::before {
-                    left: 12px;
-                }
-
-                .timeline-dot {
-                    left: 3px;
-                    top: 18px;
-                    width: 16px;
-                    height: 16px;
-                }
-
-                .timeline-certificate-title {
-                    font-size: 1rem;
-                }
-
-                .btn {
-                    padding: 6px 12px;
-                    font-size: 0.75rem;
-                }
-            }
-
-            @media (max-width: 360px) {
-                .container {
-                    padding: 0 10px;
-                }
-
-                .header {
-                    padding: 30px 0 20px;
+                    padding: 1rem 0;
                 }
 
                 .avatar {
@@ -844,195 +791,193 @@
                     height: 50px;
                 }
 
-                .header h1 {
-                    font-size: 1.1rem;
-                }
-
-                .social-links a {
-                    width: 35px;
-                    height: 35px;
-                    font-size: 1rem;
+                .header-info h1 {
+                    font-size: 1.25rem;
                 }
 
                 .search-section {
-                    padding: 15px;
-                }
-
-                .timeline-item {
-                    padding: 10px 0 10px 40px;
+                    padding: 1.5rem;
                 }
 
                 .timeline::before {
-                    left: 10px;
+                    left: 15px;
+                }
+
+                .timeline-item {
+                    padding-left: 50px;
                 }
 
                 .timeline-dot {
-                    left: 1px;
-                    top: 15px;
-                    width: 14px;
-                    height: 14px;
+                    left: 6px;
+                    width: 16px;
+                    height: 16px;
+                }
+
+                .timeline-content {
+                    padding: 0.75rem;
+                }
+
+                .timeline-title {
+                    font-size: 1rem;
+                }
+
+                .timeline-platform {
+                    padding: 0.25rem 0.5rem;
+                    font-size: 0.65rem;
                 }
             }
         </style>
     </head>
     <body>
-        <!-- Dark Mode Toggle -->
-        <button id="dark-mode-toggle" class="theme-toggle">
-            <i class="fas fa-moon"></i>
-        </button>
-
-        <!-- Header -->
+        <!-- Modern Header -->
         <header class="header">
-            <img
-                src="./templates/Avatar.png"
-                alt="Ha Trong Nguyen"
-                class="avatar"
-            />
-            <h1>Ha Trong Nguyen</h1>
-            <p class="subtitle">Professional Certificates Portfolio</p>
-            <div class="social-links">
-                <a
-                    href="https://www.facebook.com/htrnguyenn"
-                    target="_blank"
-                    title="Facebook"
-                >
-                    <i class="fab fa-facebook"></i>
-                </a>
-                <a
-                    href="https://github.com/htrnguyen"
-                    target="_blank"
-                    title="GitHub"
-                >
-                    <i class="fab fa-github"></i>
-                </a>
-                <a
-                    href="https://www.linkedin.com/in/htrnguyen"
-                    target="_blank"
-                    title="LinkedIn"
-                >
-                    <i class="fab fa-linkedin"></i>
-                </a>
-            </div>
-            <div class="stats-mini">
-                <div class="stat-mini">
-                    <span class="number" id="total-certificates">
-                        {{ data|length if data else 0 }}
-                    </span>
-                    Total Certificates
+            <div class="header-container">
+                <div class="header-left">
+                    <img
+                        src="./templates/Avatar.png"
+                        alt="Ha Trong Nguyen"
+                        class="avatar"
+                    />
+                    <div class="header-info">
+                        <h1>Ha Trong Nguyen</h1>
+                        <p>Professional Certificates Portfolio</p>
+                    </div>
                 </div>
-                <div class="stat-mini">
-                    {% if data %} {% set platforms = [] %} {% for row in data %}
-                    {% if row['Certificate Type'] not in platforms %} {% set _ =
-                    platforms.append(row['Certificate Type']) %} {% endif %} {%
-                    endfor %}
-                    <span class="number" id="platforms-count">
-                        {{ platforms|length }}
-                    </span>
-                    Platforms
+                
+                <div class="header-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" id="total-certificates">
+                            {{ data|length if data else 0 }}
+                        </span>
+                        <span class="stat-label">Certificates</span>
+                    </div>
+                    <div class="stat-item">
+                        {% if data %}
+                            {% set platforms = [] %}
+                            {% for row in data %}
+                                {% if row['Certificate Type'] not in platforms %}
+                                    {% set _ = platforms.append(row['Certificate Type']) %}
+                                {% endif %}
+                            {% endfor %}
+                            <span class="stat-number" id="platforms-count">
+                                {{ platforms|length }}
+                            </span>
+                        {% else %}
+                            <span class="stat-number" id="platforms-count">0</span>
+                        {% endif %}
+                        <span class="stat-label">Platforms</span>
+                    </div>
+                    <div class="stat-item">
+                        {% if data %}
+                            {% set current_year = 2024 %}
+                            {% set year_count = 0 %}
+                            {% for row in data %}
+                                {% if current_year|string in row['Date Issued'] %}
+                                    {% set year_count = year_count + 1 %}
+                                {% endif %}
+                            {% endfor %}
+                            <span class="stat-number" id="current-year">
+                                {{ year_count }}
+                            </span>
+                        {% else %}
+                            <span class="stat-number" id="current-year">0</span>
+                        {% endif %}
+                        <span class="stat-label">This Year</span>
+                    </div>
                 </div>
-                <div class="stat-mini">
-                    {% if data %} {% set current_year = 2024 %} {% set
-                    year_count = 0 %} {% for row in data %} {% if
-                    current_year|string in row['Date Issued'] %} {% set
-                    year_count = year_count + 1 %} {% endif %} {% endfor %}
-                    <span class="number" id="current-year">
-                        {{ year_count }}
-                    </span>
-                    This Year
-                </div>
+
+                <button id="dark-mode-toggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
             </div>
         </header>
 
         <!-- Main Content -->
-        <main class="container">
-            <!-- Search Section -->
-            {% if data %}
-            <section class="search-section">
-                <div class="search-container">
-                    <div class="search-group">
-                        <label for="search-input">Search Certificates</label>
-                        <input
-                            type="text"
-                            id="search-input"
-                            class="search-input"
-                            placeholder="Search by certificate name..."
-                        />
-                    </div>
-                    <div class="search-group">
-                        <label for="platform-filter">Filter by Platform</label>
-                        <select id="platform-filter" class="filter-select">
-                            <option value="">All Platforms</option>
-                            {% set platforms = [] %} {% for row in data %} {% if
-                            row['Certificate Type'] not in platforms %} {% set _
-                            = platforms.append(row['Certificate Type']) %}
-                            <option value="{{ row['Certificate Type'] }}">
-                                {{ row['Certificate Type'] }}
-                            </option>
-                            {% endif %} {% endfor %}
-                        </select>
-                    </div>
-                </div>
-            </section>
-            {% endif %}
-
-            <!-- Certificates Section -->
-            <section class="certificates-section">
-                <h2 class="section-title">Certificates Timeline</h2>
-
-                <!-- Timeline View -->
-                <div class="timeline" id="timeline-container">
-                    {% if data %} {% for row in data %}
-                    <article
-                        class="timeline-item"
-                        data-title="{{ row['Certificate Name']|lower }}"
-                        data-platform="{{ row['Certificate Type']|lower }}"
-                        data-date="{{ row['Date Issued'] }}"
-                    >
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">
-                            {{ row['Date Issued'] }}
+        <main class="main">
+                <!-- Search Section -->
+                {% if data %}
+                <section class="search-section">
+                    <h2 class="search-title">Find Your Certificates</h2>
+                    <div class="search-grid">
+                        <div class="search-group">
+                            <label for="search-input">Search Certificates</label>
+                            <input
+                                type="text"
+                                id="search-input"
+                                class="search-input"
+                                placeholder="Search by certificate name..."
+                            />
                         </div>
-                        <div class="timeline-certificate-card">
-                            <h3 class="timeline-certificate-title">
-                                <a
-                                    href="{{ row['URL'] }}"
-                                    target="_blank"
-                                    rel="noopener"
-                                >
-                                    {{ row['Certificate Name'] }}
-                                </a>
-                            </h3>
-                            <div class="timeline-certificate-meta">
-                                <span class="timeline-certificate-type"
-                                    >{{ row['Certificate Type'] }}</span
-                                >
-                                <span class="timeline-certificate-date"
-                                    >Issued: {{ row['Date Issued'] }}</span
-                                >
-                            </div>
-                            <a
-                                href="{{ row['URL'] }}"
-                                target="_blank"
-                                rel="noopener"
-                                class="btn btn-primary"
+                        <div class="search-group">
+                            <label for="platform-filter">Filter by Platform</label>
+                            <select id="platform-filter" class="filter-select">
+                                <option value="">All Platforms</option>
+                                {% if data %}
+                                    {% set platforms = [] %}
+                                    {% for row in data %}
+                                        {% if row['Certificate Type'] not in platforms %}
+                                            {% set _ = platforms.append(row['Certificate Type']) %}
+                                            <option value="{{ row['Certificate Type'] }}">
+                                                {{ row['Certificate Type'] }}
+                                            </option>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            </select>
+                        </div>
+                    </div>
+                </section>
+                {% endif %}
+
+                <!-- Certificates Section -->
+                <section class="certificates-section">
+                    <h2 class="section-title">Certificates Timeline</h2>
+
+                    <!-- Modern Timeline -->
+                    <div class="timeline" id="timeline-container">
+                        {% if data %}
+                            {% for row in data %}
+                            <article
+                                class="timeline-item"
+                                data-title="{{ row['Certificate Name']|lower }}"
+                                data-platform="{{ row['Certificate Type']|lower }}"
+                                data-date="{{ row['Date Issued'] }}"
                             >
-                                <i class="fas fa-external-link-alt"></i>
-                                View Certificate
-                            </a>
+                                <div class="timeline-dot"></div>
+                                <div class="timeline-content">
+                                    <div class="timeline-date">
+                                        {{ row['Date Issued'] }}
+                                    </div>
+                                    <h3 class="timeline-title">
+                                        <a
+                                            href="{{ row['URL'] }}"
+                                            target="_blank"
+                                            rel="noopener"
+                                        >
+                                            {{ row['Certificate Name'] }}
+                                        </a>
+                                    </h3>
+                                    <div class="timeline-meta">
+                                        <span class="timeline-platform platform-{{ row['Certificate Type']|lower|replace(' ', '-') }}">
+                                            {{ row['Certificate Type'] }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </article>
+                            {% endfor %}
+                        {% else %}
+                        <div class="empty-state">
+                            <i class="fas fa-certificate"></i>
+                            <h3>No certificates available</h3>
+                            <p>
+                                Certificates will be loaded from Google Sheets
+                                when available.
+                            </p>
                         </div>
-                    </article>
-                    {% endfor %} {% else %}
-                    <div class="empty-state">
-                        <i class="fas fa-certificate"></i>
-                        <h3>No certificates available</h3>
-                        <p>
-                            Certificates will be loaded from Google Sheets when
-                            available.
-                        </p>
+                        {% endif %}
                     </div>
-                    {% endif %}
-                </div>
-            </section>
+                </section>
+            </div>
         </main>
 
         <!-- Footer -->
@@ -1055,6 +1000,9 @@
                     </a>
                     <a href="https://github.com/htrnguyen" target="_blank">
                         <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://www.facebook.com/htrnguyenn" target="_blank">
+                        <i class="fab fa-facebook"></i> Facebook
                     </a>
                 </div>
                 <p>&copy; 2024 Ha Trong Nguyen. All rights reserved.</p>
@@ -1100,7 +1048,7 @@
                     if (platform) platforms.add(platform)
 
                     const dateText = item.querySelector(
-                        '.timeline-certificate-date'
+                        '.timeline-date'
                     ).textContent
                     if (dateText.includes(currentYear.toString())) {
                         currentYearCount++
@@ -1119,7 +1067,7 @@
                 const searchTerm = searchInput.value.toLowerCase()
                 const platform = platformFilter.value.toLowerCase()
 
-                // Filter timeline view
+                // Filter timeline items
                 timelineItems.forEach((item) => {
                     const title = item.dataset.title
                     const itemPlatform = item.dataset.platform
