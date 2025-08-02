@@ -20,18 +20,14 @@
 
         <style>
             :root {
-                --primary: #2563eb;
-                --primary-dark: #1d4ed8;
-                --secondary: #64748b;
-                --accent: #f59e0b;
-                --success: #10b981;
+                --primary: #000000;
+                --secondary: #666666;
                 --bg-light: #ffffff;
-                --bg-dark: #0f172a;
-                --text-light: #1e293b;
-                --text-dark: #f1f5f9;
-                --border-light: #e2e8f0;
-                --border-dark: #334155;
-                --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                --bg-dark: #000000;
+                --text-light: #000000;
+                --text-dark: #ffffff;
+                --border-light: #e0e0e0;
+                --border-dark: #333333;
             }
 
             * {
@@ -44,139 +40,160 @@
                 font-family: 'Inter', sans-serif;
                 line-height: 1.6;
                 color: var(--text-light);
-                background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+                background: var(--bg-light);
                 transition: all 0.3s ease;
             }
 
             body.dark-mode {
                 color: var(--text-dark);
-                background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+                background: var(--bg-dark);
             }
 
             .header {
-                background: var(--gradient);
-                color: white;
-                padding: 120px 0 80px;
+                background: var(--bg-light);
+                color: var(--text-light);
+                padding: 60px 0 40px;
                 text-align: center;
-                position: relative;
+                border-bottom: 2px solid var(--border-light);
+            }
+
+            body.dark-mode .header {
+                background: var(--bg-dark);
+                color: var(--text-dark);
+                border-bottom-color: var(--border-dark);
             }
 
             .avatar {
-                width: 120px;
-                height: 120px;
+                width: 80px;
+                height: 80px;
                 border-radius: 50%;
-                border: 4px solid rgba(255, 255, 255, 0.3);
-                margin: 0 auto 24px;
+                border: 3px solid var(--border-light);
+                margin: 0 auto 20px;
                 display: block;
-                transition: transform 0.3s ease;
             }
 
-            .avatar:hover {
-                transform: scale(1.05);
+            body.dark-mode .avatar {
+                border-color: var(--border-dark);
             }
 
             .header h1 {
-                font-size: 3rem;
-                font-weight: 700;
-                margin-bottom: 16px;
+                font-size: 2rem;
+                font-weight: 600;
+                margin-bottom: 8px;
             }
 
             .header .subtitle {
-                font-size: 1.25rem;
-                opacity: 0.9;
-                margin-bottom: 32px;
+                font-size: 1rem;
+                color: var(--secondary);
+                margin-bottom: 20px;
             }
 
             .social-links {
                 display: flex;
                 justify-content: center;
-                gap: 20px;
+                gap: 15px;
             }
 
             .social-links a {
-                color: white;
-                font-size: 1.5rem;
-                width: 48px;
-                height: 48px;
+                color: var(--text-light);
+                font-size: 1.2rem;
+                width: 40px;
+                height: 40px;
                 border-radius: 50%;
-                background: rgba(255, 255, 255, 0.1);
+                background: var(--border-light);
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 transition: all 0.3s ease;
             }
 
+            body.dark-mode .social-links a {
+                color: var(--text-dark);
+                background: var(--border-dark);
+            }
+
             .social-links a:hover {
-                background: rgba(255, 255, 255, 0.2);
-                transform: translateY(-2px);
+                background: var(--primary);
+                color: var(--bg-light);
+            }
+
+            body.dark-mode .social-links a:hover {
+                background: var(--text-dark);
+                color: var(--bg-dark);
             }
 
             .container {
-                max-width: 1200px;
+                max-width: 800px;
                 margin: 0 auto;
-                padding: 0 24px;
+                padding: 0 20px;
             }
 
             .stats {
-                background: white;
-                border-radius: 20px;
-                padding: 32px;
-                margin: -40px auto 48px;
-                max-width: 800px;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                position: relative;
-                z-index: 10;
+                background: var(--bg-light);
+                border: 1px solid var(--border-light);
+                border-radius: 8px;
+                padding: 20px;
+                margin: 30px auto;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             }
 
             body.dark-mode .stats {
                 background: var(--bg-dark);
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+                border-color: var(--border-dark);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
             }
 
             .stats-grid {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 24px;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
                 text-align: center;
             }
 
             .stat-number {
-                font-size: 2.5rem;
-                font-weight: 700;
+                font-size: 1.8rem;
+                font-weight: 600;
                 color: var(--primary);
-                margin-bottom: 8px;
+                margin-bottom: 5px;
+            }
+
+            body.dark-mode .stat-number {
+                color: var(--text-dark);
             }
 
             .stat-label {
                 color: var(--secondary);
                 font-weight: 500;
+                font-size: 0.9rem;
             }
 
             .search-section {
-                background: white;
-                border-radius: 16px;
-                padding: 24px;
-                margin-bottom: 32px;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                background: var(--bg-light);
+                border: 1px solid var(--border-light);
+                border-radius: 8px;
+                padding: 20px;
+                margin-bottom: 30px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             }
 
             body.dark-mode .search-section {
                 background: var(--bg-dark);
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+                border-color: var(--border-dark);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
             }
 
             .search-container {
                 display: grid;
                 grid-template-columns: 1fr auto;
-                gap: 16px;
+                gap: 15px;
                 align-items: end;
             }
 
             .search-group label {
-                font-weight: 600;
+                font-weight: 500;
                 color: var(--text-light);
-                font-size: 0.875rem;
-                margin-bottom: 8px;
+                font-size: 0.9rem;
+                margin-bottom: 5px;
                 display: block;
             }
 
@@ -186,13 +203,14 @@
 
             .search-input,
             .filter-select {
-                padding: 12px 16px;
-                border: 2px solid var(--border-light);
-                border-radius: 12px;
-                font-size: 1rem;
+                padding: 10px 12px;
+                border: 1px solid var(--border-light);
+                border-radius: 6px;
+                font-size: 0.9rem;
                 transition: all 0.3s ease;
-                background: white;
+                background: var(--bg-light);
                 width: 100%;
+                color: var(--text-light);
             }
 
             body.dark-mode .search-input,
@@ -206,404 +224,41 @@
             .filter-select:focus {
                 outline: none;
                 border-color: var(--primary);
-                box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+                box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
             }
 
             body.dark-mode .search-input:focus,
             body.dark-mode .filter-select:focus {
-                box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+                box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
             }
 
             .certificates-section {
-                margin-bottom: 80px;
-            }
-
-            /* View Toggle */
-            .view-toggle {
-                display: flex;
-                justify-content: center;
-                gap: 8px;
-                margin-bottom: 32px;
-            }
-
-            .view-btn {
-                padding: 12px 24px;
-                border: 2px solid var(--border-light);
-                background: white;
-                border-radius: 12px;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                font-weight: 600;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                font-size: 1rem;
-            }
-
-            body.dark-mode .view-btn {
-                background: var(--bg-dark);
-                border-color: var(--border-dark);
-                color: var(--text-dark);
-            }
-
-            .view-btn.active {
-                background: var(--primary);
-                color: white;
-                border-color: var(--primary);
-                transform: translateY(-2px);
-                box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-            }
-
-            .view-btn:hover {
-                border-color: var(--primary);
-                transform: translateY(-1px);
-            }
-
-            .view-btn i {
-                font-size: 1.1rem;
-            }
-
-            .view-section {
-                display: none;
-            }
-
-            .view-section.active {
-                display: block;
-            }
-
-            .certificates-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-                gap: 24px;
+                margin-bottom: 60px;
             }
 
             .section-title {
-                font-size: 2rem;
-                font-weight: 700;
+                font-size: 1.5rem;
+                font-weight: 600;
                 color: var(--text-light);
-                margin-bottom: 32px;
-                display: flex;
-                align-items: center;
-                gap: 12px;
+                margin-bottom: 25px;
                 text-align: center;
-                justify-content: center;
             }
 
             body.dark-mode .section-title {
                 color: var(--text-dark);
             }
 
-            .section-title i {
-                color: var(--primary);
-                font-size: 1.5rem;
-            }
-
-            .certificate-card {
-                background: white;
-                border-radius: 16px;
-                padding: 24px;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                transition: all 0.3s ease;
-                border: 1px solid var(--border-light);
-                position: relative;
-                overflow: hidden;
-            }
-
-            body.dark-mode .certificate-card {
-                background: var(--bg-dark);
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-                border-color: var(--border-dark);
-            }
-
-            .certificate-card::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 4px;
-                background: var(--gradient);
-            }
-
-            .certificate-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            }
-
-            body.dark-mode .certificate-card:hover {
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            }
-
-            .certificate-icon {
-                width: 60px;
-                height: 60px;
-                border-radius: 12px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-bottom: 16px;
-                font-size: 1.5rem;
-                background: var(--gradient);
-                color: white;
-            }
-
-            /* Platform-specific logo styles */
-            .platform-logo {
-                width: 60px;
-                height: 60px;
-                border-radius: 12px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-bottom: 16px;
-                background: var(--gradient);
-                color: white;
-                transition: all 0.3s ease;
-                position: relative;
-                overflow: hidden;
-            }
-
-            body.dark-mode .platform-logo {
-                background: var(--gradient);
-            }
-
-            .platform-logo:hover {
-                transform: scale(1.05);
-            }
-
-            .platform-logo::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: linear-gradient(
-                    45deg,
-                    rgba(255, 255, 255, 0.1) 0%,
-                    rgba(255, 255, 255, 0.2) 100%
-                );
-                opacity: 0;
-                transition: opacity 0.3s ease;
-            }
-
-            .platform-logo:hover::before {
-                opacity: 1;
-            }
-
-            .platform-logo i {
-                    font-size: 1.5rem;
-                z-index: 1;
-                position: relative;
-            }
-
-            /* Unified platform styling - all platforms use the same gradient */
-            .platform-coursera,
-            .platform-udemy,
-            .platform-linkedin,
-            .platform-google,
-            .platform-microsoft,
-            .platform-aws,
-            .platform-azure,
-            .platform-gcp,
-            .platform-datacamp,
-            .platform-kaggle,
-            .platform-hackerrank,
-            .platform-leetcode,
-            .platform-freecodecamp,
-            .platform-edx,
-            .platform-mit,
-            .platform-stanford,
-            .platform-harvard,
-            .platform-ibm,
-            .platform-oracle,
-            .platform-salesforce,
-            .platform-adobe,
-            .platform-autodesk {
-                background: var(--gradient);
-                color: white;
-            }
-
-            .certificate-title {
-                font-size: 1.25rem;
-                font-weight: 600;
-                margin-bottom: 12px;
-                line-height: 1.4;
-            }
-
-            .certificate-title a {
-                color: var(--text-light);
-                text-decoration: none;
-                transition: color 0.3s ease;
-            }
-
-            body.dark-mode .certificate-title a {
-                color: var(--text-dark);
-            }
-
-            .certificate-title a:hover {
-                color: var(--primary);
-            }
-
-            .certificate-meta {
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-                margin-bottom: 20px;
-            }
-
-            .certificate-type {
-                background: var(--primary);
-                color: white;
-                padding: 4px 12px;
-                border-radius: 20px;
-                font-size: 0.875rem;
-                font-weight: 500;
-                display: inline-block;
-                width: fit-content;
-            }
-
-            .certificate-date {
-                color: var(--secondary);
-                font-size: 0.875rem;
-            }
-
-            .btn {
-                display: inline-flex;
-                align-items: center;
-                gap: 8px;
-                padding: 12px 20px;
-                border-radius: 8px;
-                text-decoration: none;
-                font-weight: 500;
-                transition: all 0.3s ease;
-                border: none;
-                cursor: pointer;
-                font-size: 0.875rem;
-            }
-
-            .btn-primary {
-                background: var(--primary);
-                color: white;
-            }
-
-            .btn-primary:hover {
-                background: var(--primary-dark);
-                transform: translateY(-1px);
-            }
-
-            .btn-secondary {
-                background: var(--secondary);
-                color: white;
-            }
-
-            .btn-secondary:hover {
-                background: #475569;
-                transform: translateY(-1px);
-            }
-
-            .theme-toggle {
-                position: fixed;
-                top: 24px;
-                right: 24px;
-                width: 48px;
-                height: 48px;
-                border-radius: 50%;
-                background: rgba(255, 255, 255, 0.1);
-                border: none;
-                color: white;
-                font-size: 1.25rem;
-                cursor: pointer;
-                transition: all 0.3s ease;
-                backdrop-filter: blur(10px);
-                z-index: 1000;
-            }
-
-            .theme-toggle:hover {
-                background: rgba(255, 255, 255, 0.2);
-                transform: scale(1.1);
-            }
-
-            .loading {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: var(--bg-light);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                z-index: 9999;
-                transition: opacity 0.5s ease;
-            }
-
-            body.dark-mode .loading {
-                background: var(--bg-dark);
-            }
-
-            .spinner {
-                width: 40px;
-                height: 40px;
-                border: 4px solid var(--border-light);
-                border-top: 4px solid var(--primary);
-                border-radius: 50%;
-                animation: spin 1s linear infinite;
-            }
-
-            @keyframes spin {
-                0% {
-                    transform: rotate(0deg);
-                }
-                100% {
-                    transform: rotate(360deg);
-                }
-            }
-
-            .fade-in {
-                opacity: 0;
-                transform: translateY(30px);
-                transition: all 0.6s ease;
-            }
-
-            .fade-in.visible {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            .empty-state {
-                text-align: center;
-                padding: 80px 24px;
-                color: var(--secondary);
-            }
-
-            .empty-state i {
-                font-size: 4rem;
-                margin-bottom: 24px;
-                opacity: 0.5;
-            }
-
-            .empty-state h3 {
-                margin-bottom: 16px;
-                color: var(--text-light);
-            }
-
-            body.dark-mode .empty-state h3 {
-                color: var(--text-dark);
-            }
-
             /* Timeline Styles */
             .timeline {
                 position: relative;
-                padding: 1rem 0;
-                display: block;
+                padding: 0;
             }
 
             .timeline::before {
                 content: '';
                 position: absolute;
                 top: 0;
-                left: 19px;
+                left: 20px;
                 width: 2px;
                 height: 100%;
                 background-color: var(--border-light);
@@ -616,10 +271,8 @@
             .timeline-item {
                 position: relative;
                 padding-left: 60px;
-                margin-bottom: 2.5rem;
-                transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-                opacity: 1;
-                transform: translateX(0);
+                margin-bottom: 30px;
+                transition: opacity 0.3s ease;
             }
 
             .timeline-item:last-child {
@@ -628,66 +281,54 @@
 
             .timeline-dot {
                 position: absolute;
-                left: 10px;
-                top: 5px;
-                width: 20px;
-                height: 20px;
+                left: 11px;
+                top: 8px;
+                width: 18px;
+                height: 18px;
                 border-radius: 50%;
-                background-color: white;
+                background-color: var(--bg-light);
                 border: 3px solid var(--primary);
             }
 
             body.dark-mode .timeline-dot {
                 background-color: var(--bg-dark);
+                border-color: var(--text-dark);
             }
 
             .timeline-date {
-                font-size: 0.85rem;
+                font-size: 0.8rem;
                 font-weight: 500;
                 color: var(--secondary);
-                margin-bottom: 0.5rem;
+                margin-bottom: 8px;
             }
 
             .timeline-certificate-card {
-                background: white;
-                border-radius: 16px;
-                padding: 24px;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                transition: all 0.3s ease;
+                background: var(--bg-light);
                 border: 1px solid var(--border-light);
-                position: relative;
-                overflow: hidden;
+                border-radius: 8px;
+                padding: 20px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
             }
 
             body.dark-mode .timeline-certificate-card {
                 background: var(--bg-dark);
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
                 border-color: var(--border-dark);
-            }
-
-            .timeline-certificate-card::before {
-                content: '';
-                position: absolute;
-                top: 0;
-                left: 0;
-                right: 0;
-                height: 4px;
-                background: var(--gradient);
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
             }
 
             .timeline-certificate-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
             }
 
             body.dark-mode .timeline-certificate-card:hover {
-                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
             }
 
             .timeline-certificate-title {
-                font-size: 1.25rem;
+                font-size: 1.1rem;
                 font-weight: 600;
-                margin-bottom: 12px;
+                margin-bottom: 10px;
                 line-height: 1.4;
             }
 
@@ -705,112 +346,223 @@
                 color: var(--primary);
             }
 
+            body.dark-mode .timeline-certificate-title a:hover {
+                color: var(--text-dark);
+                text-decoration: underline;
+            }
+
             .timeline-certificate-meta {
                 display: flex;
                 flex-direction: column;
-                gap: 8px;
-                margin-bottom: 20px;
+                gap: 6px;
+                margin-bottom: 15px;
             }
 
             .timeline-certificate-type {
                 background: var(--primary);
-                color: white;
-                padding: 4px 12px;
-                border-radius: 20px;
-                font-size: 0.875rem;
+                color: var(--bg-light);
+                padding: 3px 10px;
+                border-radius: 15px;
+                font-size: 0.8rem;
                 font-weight: 500;
                 display: inline-block;
                 width: fit-content;
             }
 
+            body.dark-mode .timeline-certificate-type {
+                background: var(--text-dark);
+                color: var(--bg-dark);
+            }
+
             .timeline-certificate-date {
                 color: var(--secondary);
-                font-size: 0.875rem;
+                font-size: 0.8rem;
+            }
+
+            .btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                padding: 8px 16px;
+                border-radius: 6px;
+                text-decoration: none;
+                font-weight: 500;
+                transition: all 0.3s ease;
+                border: 1px solid var(--border-light);
+                cursor: pointer;
+                font-size: 0.8rem;
+                background: var(--bg-light);
+                color: var(--text-light);
+            }
+
+            body.dark-mode .btn {
+                background: var(--bg-dark);
+                color: var(--text-dark);
+                border-color: var(--border-dark);
+            }
+
+            .btn-primary {
+                background: var(--primary);
+                color: var(--bg-light);
+                border-color: var(--primary);
+            }
+
+            body.dark-mode .btn-primary {
+                background: var(--text-dark);
+                color: var(--bg-dark);
+                border-color: var(--text-dark);
+            }
+
+            .btn-primary:hover {
+                opacity: 0.8;
+            }
+
+            .theme-toggle {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background: var(--bg-light);
+                border: 1px solid var(--border-light);
+                color: var(--text-light);
+                font-size: 1rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                z-index: 1000;
+            }
+
+            body.dark-mode .theme-toggle {
+                background: var(--bg-dark);
+                border-color: var(--border-dark);
+                color: var(--text-dark);
+            }
+
+            .theme-toggle:hover {
+                background: var(--primary);
+                color: var(--bg-light);
+            }
+
+            body.dark-mode .theme-toggle:hover {
+                background: var(--text-dark);
+                color: var(--bg-dark);
+            }
+
+            .empty-state {
+                text-align: center;
+                padding: 60px 20px;
+                color: var(--secondary);
+            }
+
+            .empty-state i {
+                font-size: 3rem;
+                margin-bottom: 20px;
+                opacity: 0.5;
+            }
+
+            .empty-state h3 {
+                margin-bottom: 10px;
+                color: var(--text-light);
+            }
+
+            body.dark-mode .empty-state h3 {
+                color: var(--text-dark);
             }
 
             .footer {
+                background: var(--bg-light);
+                color: var(--text-light);
+                padding: 40px 0 30px;
+                margin-top: 60px;
+                border-top: 1px solid var(--border-light);
+            }
+
+            body.dark-mode .footer {
                 background: var(--bg-dark);
                 color: var(--text-dark);
-                padding: 60px 0 40px;
-                margin-top: 80px;
+                border-top-color: var(--border-dark);
             }
 
             .footer-content {
                 text-align: center;
-                max-width: 600px;
+                max-width: 500px;
                 margin: 0 auto;
             }
 
             .footer-content h3 {
-                margin-bottom: 16px;
-                font-size: 1.5rem;
+                margin-bottom: 10px;
+                font-size: 1.2rem;
             }
 
             .footer-content p {
-                margin-bottom: 24px;
+                margin-bottom: 20px;
                 opacity: 0.8;
+                font-size: 0.9rem;
             }
 
             .footer-links {
                 display: flex;
                 justify-content: center;
-                gap: 24px;
-                margin-bottom: 32px;
+                gap: 15px;
+                margin-bottom: 20px;
             }
 
             .footer-links a {
-                color: var(--text-dark);
+                color: var(--text-light);
                 text-decoration: none;
                 display: flex;
                 align-items: center;
-                gap: 8px;
-                padding: 12px 20px;
-                border-radius: 8px;
-                background: rgba(255, 255, 255, 0.1);
+                gap: 6px;
+                padding: 8px 15px;
+                border-radius: 6px;
+                background: var(--border-light);
                 transition: all 0.3s ease;
+                font-size: 0.9rem;
+            }
+
+            body.dark-mode .footer-links a {
+                color: var(--text-dark);
+                background: var(--border-dark);
             }
 
             .footer-links a:hover {
-                background: rgba(255, 255, 255, 0.2);
-                transform: translateY(-2px);
+                background: var(--primary);
+                color: var(--bg-light);
+            }
+
+            body.dark-mode .footer-links a:hover {
+                background: var(--text-dark);
+                color: var(--bg-dark);
             }
 
             @media (max-width: 768px) {
                 .header h1 {
-                    font-size: 2rem;
+                    font-size: 1.5rem;
                 }
 
                 .header .subtitle {
-                    font-size: 1rem;
+                    font-size: 0.9rem;
                 }
 
                 .stats {
-                    margin: -20px auto 32px;
-                    padding: 24px;
+                    margin: 20px auto;
+                    padding: 15px;
                 }
 
                 .stats-grid {
                     grid-template-columns: 1fr;
-                    gap: 16px;
+                    gap: 15px;
                 }
 
                 .search-container {
                     grid-template-columns: 1fr;
-                    gap: 12px;
-                }
-
-                .certificates-grid {
-                    grid-template-columns: 1fr;
-                    gap: 16px;
-                }
-
-                .certificate-card {
-                    padding: 20px;
+                    gap: 10px;
                 }
 
                 .footer-links {
                     flex-direction: column;
-                    gap: 12px;
+                    gap: 10px;
                 }
 
                 .footer-links a {
@@ -820,54 +572,49 @@
         </style>
     </head>
     <body>
-        <!-- Loading Screen -->
-        <div id="loading" class="loading">
-            <div class="spinner"></div>
-        </div>
-
         <!-- Dark Mode Toggle -->
         <button id="dark-mode-toggle" class="theme-toggle">
-                                <i class="fas fa-moon"></i>
-                            </button>
+            <i class="fas fa-moon"></i>
+        </button>
 
         <!-- Header -->
         <header class="header">
-                <img
-                    src="./templates/Avatar.png"
+            <img
+                src="./templates/Avatar.png"
                 alt="Ha Trong Nguyen"
-                    class="avatar"
-                />
+                class="avatar"
+            />
             <h1>Ha Trong Nguyen</h1>
             <p class="subtitle">Professional Certificates Portfolio</p>
-                <div class="social-links">
-                    <a
-                        href="https://www.facebook.com/htrnguyenn"
-                        target="_blank"
+            <div class="social-links">
+                <a
+                    href="https://www.facebook.com/htrnguyenn"
+                    target="_blank"
                     title="Facebook"
                 >
                     <i class="fab fa-facebook"></i>
                 </a>
-                    <a
-                        href="https://github.com/htrnguyen"
-                        target="_blank"
+                <a
+                    href="https://github.com/htrnguyen"
+                    target="_blank"
                     title="GitHub"
                 >
                     <i class="fab fa-github"></i>
                 </a>
-                    <a
-                        href="https://www.linkedin.com/in/htrnguyen"
-                        target="_blank"
+                <a
+                    href="https://www.linkedin.com/in/htrnguyen"
+                    target="_blank"
                     title="LinkedIn"
-                    >
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                </div>
-            </header>
+                >
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </header>
 
         <!-- Main Content -->
         <main class="container">
             <!-- Stats Section -->
-            <section class="stats fade-in">
+            <section class="stats">
                 <div class="stats-grid">
                     <div>
                         <div class="stat-number" id="total-certificates">
@@ -901,7 +648,7 @@
 
             <!-- Search Section -->
             {% if data %}
-            <section class="search-section fade-in">
+            <section class="search-section">
                 <div class="search-container">
                     <div class="search-group">
                         <label for="search-input">Search Certificates</label>
@@ -930,49 +677,37 @@
             {% endif %}
 
             <!-- Certificates Section -->
-            <section class="certificates-section fade-in">
-                <!-- View Toggle -->
-                <div class="view-toggle">
-                    <button class="view-btn active" data-view="grid">
-                        <i class="fas fa-th"></i>
-                        Grid View
-                    </button>
-                    <button class="view-btn" data-view="timeline">
-                        <i class="fas fa-stream"></i>
-                        Timeline View
-                    </button>
-                </div>
+            <section class="certificates-section">
+                <h2 class="section-title">Certificates Timeline</h2>
 
-                <!-- Grid View Section -->
-                <div class="view-section active" id="grid-view">
-                    <div class="certificates-grid" id="certificates-grid">
-                        {% if data %} {% for row in data %}
-                        <article
-                            class="certificate-card"
-                            data-title="{{ row['Certificate Name']|lower }}"
-                            data-platform="{{ row['Certificate Type']|lower }}"
-                            data-date="{{ row['Date Issued'] }}"
-                        >
-                            <div
-                                class="platform-logo"
-                                data-platform="{{ row['Certificate Type']|lower }}"
-                            >
-                                <i class="fas fa-certificate"></i>
-                            </div>
-                            <h3 class="certificate-title">
+                <!-- Timeline View -->
+                <div class="timeline" id="timeline-container">
+                    {% if data %} {% for row in data %}
+                    <article
+                        class="timeline-item"
+                        data-title="{{ row['Certificate Name']|lower }}"
+                        data-platform="{{ row['Certificate Type']|lower }}"
+                        data-date="{{ row['Date Issued'] }}"
+                    >
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-date">
+                            {{ row['Date Issued'] }}
+                        </div>
+                        <div class="timeline-certificate-card">
+                            <h3 class="timeline-certificate-title">
                                 <a
                                     href="{{ row['URL'] }}"
                                     target="_blank"
                                     rel="noopener"
                                 >
-                                {{ row['Certificate Name'] }}
-                            </a>
+                                    {{ row['Certificate Name'] }}
+                                </a>
                             </h3>
-                            <div class="certificate-meta">
-                                <span class="certificate-type"
+                            <div class="timeline-certificate-meta">
+                                <span class="timeline-certificate-type"
                                     >{{ row['Certificate Type'] }}</span
                                 >
-                                <span class="certificate-date"
+                                <span class="timeline-certificate-date"
                                     >Issued: {{ row['Date Issued'] }}</span
                                 >
                             </div>
@@ -985,83 +720,18 @@
                                 <i class="fas fa-external-link-alt"></i>
                                 View Certificate
                             </a>
-                        </article>
-                        {% endfor %} {% else %}
-                        <div
-                            class="empty-state"
-                            style="display: block; grid-column: 1 / -1"
-                        >
-                            <i class="fas fa-certificate"></i>
-                            <h3>No certificates available</h3>
-                            <p>
-                                Certificates will be loaded from Google Sheets
-                                when available.
+                        </div>
+                    </article>
+                    {% endfor %} {% else %}
+                    <div class="empty-state">
+                        <i class="fas fa-certificate"></i>
+                        <h3>No certificates available</h3>
+                        <p>
+                            Certificates will be loaded from Google Sheets when
+                            available.
                         </p>
                     </div>
-                        {% endif %}
-                </div>
-                </div>
-
-                <!-- Timeline View Section -->
-                <div class="view-section" id="timeline-view">
-                    <div class="timeline" id="timeline-container">
-                        {% if data %} {% for row in data %}
-                        <article
-                            class="timeline-item"
-                            data-title="{{ row['Certificate Name']|lower }}"
-                            data-platform="{{ row['Certificate Type']|lower }}"
-                            data-date="{{ row['Date Issued'] }}"
-                        >
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">
-                                {{ row['Date Issued'] }}
-                            </div>
-                            <div class="timeline-certificate-card">
-                                <div
-                                    class="platform-logo"
-                                    data-platform="{{ row['Certificate Type']|lower }}"
-                                >
-                                    <i class="fas fa-certificate"></i>
-                                </div>
-                                <h3 class="timeline-certificate-title">
-                                    <a
-                                        href="{{ row['URL'] }}"
-                                        target="_blank"
-                                        rel="noopener"
-                                    >
-                                        {{ row['Certificate Name'] }}
-                                    </a>
-                                </h3>
-                                <div class="timeline-certificate-meta">
-                                    <span class="timeline-certificate-type"
-                                        >{{ row['Certificate Type'] }}</span
-                                    >
-                                    <span class="timeline-certificate-date"
-                                        >Issued: {{ row['Date Issued'] }}</span
-                                    >
-                                </div>
-                                <a
-                                    href="{{ row['URL'] }}"
-                                    target="_blank"
-                                    rel="noopener"
-                                    class="btn btn-primary"
-                                >
-                                    <i class="fas fa-external-link-alt"></i>
-                                    View Certificate
-                                </a>
-                            </div>
-                        </article>
-                        {% endfor %} {% else %}
-                        <div class="empty-state" style="display: block">
-                            <i class="fas fa-certificate"></i>
-                            <h3>No certificates available</h3>
-                            <p>
-                                Certificates will be loaded from Google Sheets
-                                when available.
-                            </p>
-                        </div>
-                        {% endif %}
-                    </div>
+                    {% endif %}
                 </div>
             </section>
         </main>
@@ -1087,160 +757,68 @@
                     <a href="https://github.com/htrnguyen" target="_blank">
                         <i class="fab fa-github"></i> GitHub
                     </a>
-        </div>
+                </div>
                 <p>&copy; 2024 Ha Trong Nguyen. All rights reserved.</p>
             </div>
         </footer>
 
         <script>
-            // Platform logo mapping - using consistent icons
-            const platformLogos = {
-                coursera: {icon: 'fas fa-graduation-cap'},
-                udemy: {icon: 'fas fa-play-circle'},
-                'linkedin learning': {icon: 'fab fa-linkedin'},
-                linkedin: {icon: 'fab fa-linkedin'},
-                google: {icon: 'fab fa-google'},
-                microsoft: {icon: 'fab fa-microsoft'},
-                aws: {icon: 'fab fa-aws'},
-                'amazon web services': {icon: 'fab fa-aws'},
-                azure: {icon: 'fas fa-cloud'},
-                gcp: {icon: 'fab fa-google'},
-                'google cloud': {icon: 'fab fa-google'},
-                datacamp: {icon: 'fas fa-chart-line'},
-                kaggle: {icon: 'fas fa-trophy'},
-                hackerrank: {icon: 'fas fa-code'},
-                leetcode: {icon: 'fas fa-code'},
-                freecodecamp: {icon: 'fas fa-free-code-camp'},
-                edx: {icon: 'fas fa-university'},
-                mit: {icon: 'fas fa-university'},
-                stanford: {icon: 'fas fa-university'},
-                harvard: {icon: 'fas fa-university'},
-                ibm: {icon: 'fas fa-cog'},
-                oracle: {icon: 'fas fa-database'},
-                salesforce: {icon: 'fas fa-cloud'},
-                adobe: {icon: 'fab fa-adobe'},
-                autodesk: {icon: 'fas fa-drafting-compass'},
-            }
-
-            // Apply platform logos
-            function applyPlatformLogos() {
-                const logoElements = document.querySelectorAll('.platform-logo')
-                logoElements.forEach((logo) => {
-                    const platform = logo.getAttribute('data-platform')
-                    const platformData = platformLogos[platform.toLowerCase()]
-
-                    if (platformData) {
-                        logo.innerHTML = `<i class="${platformData.icon}"></i>`
-                    } else {
-                        // Default certificate icon for unknown platforms
-                        logo.innerHTML = '<i class="fas fa-certificate"></i>'
-                    }
-                })
-            }
-
-            // Loading Animation
-            window.addEventListener('load', function () {
-                const loading = document.getElementById('loading')
-                loading.style.opacity = '0'
-                setTimeout(() => {
-                    loading.style.display = 'none'
-                }, 500)
-
-                // Apply platform logos after page loads
-                applyPlatformLogos()
-            })
-
             // Dark Mode Toggle
             const darkModeToggle = document.getElementById('dark-mode-toggle')
-                const body = document.body
+            const body = document.body
 
-                if (localStorage.getItem('darkMode') === 'enabled') {
-                    body.classList.add('dark-mode')
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                body.classList.add('dark-mode')
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>'
+            }
+
+            darkModeToggle.addEventListener('click', function () {
+                body.classList.toggle('dark-mode')
+                if (body.classList.contains('dark-mode')) {
                     darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>'
+                    localStorage.setItem('darkMode', 'enabled')
+                } else {
+                    darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>'
+                    localStorage.setItem('darkMode', 'disabled')
                 }
-
-                darkModeToggle.addEventListener('click', function () {
-                    body.classList.toggle('dark-mode')
-                    if (body.classList.contains('dark-mode')) {
-                        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>'
-                        localStorage.setItem('darkMode', 'enabled')
-                    } else {
-                        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>'
-                        localStorage.setItem('darkMode', 'disabled')
-                    }
-                })
-
-            // Fade-in Animation
-            const observer = new IntersectionObserver(
-                (entries) => {
-                    entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('visible')
-                        }
-                    })
-                },
-                {threshold: 0.1}
-            )
-
-            document.querySelectorAll('.fade-in').forEach((el) => {
-                observer.observe(el)
             })
 
             // Search and Filter
             const searchInput = document.getElementById('search-input')
             const platformFilter = document.getElementById('platform-filter')
-            const certificateCards =
-                    document.querySelectorAll('.certificate-card')
             const timelineItems = document.querySelectorAll('.timeline-item')
 
             function updateStats() {
-                const visibleCards = document.querySelectorAll(
-                    '.certificate-card:not([style*="display: none"])'
+                const visibleItems = document.querySelectorAll(
+                    '.timeline-item:not([style*="display: none"])'
                 )
                 const platforms = new Set()
                 const currentYear = new Date().getFullYear()
                 let currentYearCount = 0
 
-                visibleCards.forEach((card) => {
-                    const platform = card.dataset.platform
+                visibleItems.forEach((item) => {
+                    const platform = item.dataset.platform
                     if (platform) platforms.add(platform)
 
-                    const dateText =
-                        card.querySelector('.certificate-date').textContent
+                    const dateText = item.querySelector(
+                        '.timeline-certificate-date'
+                    ).textContent
                     if (dateText.includes(currentYear.toString())) {
                         currentYearCount++
                     }
                 })
 
                 document.getElementById('total-certificates').textContent =
-                    visibleCards.length
+                    visibleItems.length
                 document.getElementById('platforms-count').textContent =
                     platforms.size
                 document.getElementById('current-year').textContent =
                     currentYearCount
             }
 
-                function filterCertificates() {
-                    const searchTerm = searchInput.value.toLowerCase()
+            function filterCertificates() {
+                const searchTerm = searchInput.value.toLowerCase()
                 const platform = platformFilter.value.toLowerCase()
-                let visibleCount = 0
-
-                // Filter grid view
-                certificateCards.forEach((card) => {
-                    const title = card.dataset.title
-                    const cardPlatform = card.dataset.platform
-
-                        const matchesSearch = title.includes(searchTerm)
-                        const matchesPlatform =
-                        !platform || cardPlatform.includes(platform)
-
-                    if (matchesSearch && matchesPlatform) {
-                        card.style.display = 'block'
-                        visibleCount++
-                    } else {
-                        card.style.display = 'none'
-                    }
-                })
 
                 // Filter timeline view
                 timelineItems.forEach((item) => {
@@ -1271,35 +849,6 @@
 
             // Initialize stats
             updateStats()
-
-            // View Toggle
-            const viewButtons = document.querySelectorAll('.view-btn')
-            const gridView = document.getElementById('grid-view')
-            const timelineView = document.getElementById('timeline-view')
-
-            viewButtons.forEach((button) => {
-                button.addEventListener('click', function () {
-                    // Remove active class from all buttons
-                    viewButtons.forEach((btn) => {
-                        btn.classList.remove('active')
-                    })
-
-                    // Add active class to clicked button
-                    this.classList.add('active')
-
-                    // Get view from data attribute
-                    const view = this.getAttribute('data-view')
-
-                    // Show corresponding view
-                    if (view === 'grid') {
-                        gridView.classList.add('active')
-                        timelineView.classList.remove('active')
-                    } else if (view === 'timeline') {
-                        timelineView.classList.add('active')
-                        gridView.classList.remove('active')
-                    }
-                })
-            })
         </script>
     </body>
 </html>
