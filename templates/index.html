@@ -29,13 +29,13 @@
                 --info: #3b82f6;
                 --danger: #ef4444;
                 --bg-light: #fafafa;
-                --bg-dark: #0a0a0a;
+                --bg-dark: #0f0f0f;
                 --text-light: #1a1a1a;
-                --text-dark: #ffffff;
+                --text-dark: #f8f9fa;
                 --border-light: #e5e7eb;
-                --border-dark: #374151;
+                --border-dark: #2d3748;
                 --card-bg-light: #ffffff;
-                --card-bg-dark: #111111;
+                --card-bg-dark: #1a1a1a;
                 --gradient-primary: linear-gradient(135deg, #000000 0%, #333333 100%);
                 --gradient-secondary: linear-gradient(135deg, #666666 0%, #999999 100%);
                 --gradient-accent: linear-gradient(135deg, #333333 0%, #666666 100%);
@@ -146,6 +146,10 @@
             .stat-item:hover {
                 transform: translateY(-1px);
                 box-shadow: var(--shadow-sm);
+            }
+
+            body.dark-mode .stat-item:hover {
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             }
 
             .stat-number {
@@ -284,7 +288,8 @@
 
             body.dark-mode .search-input:focus,
             body.dark-mode .filter-select:focus {
-                box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+                border-color: var(--text-dark);
+                box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.15);
             }
 
             /* Modern Timeline */
@@ -321,7 +326,8 @@
             }
 
             body.dark-mode .timeline::before {
-                background: var(--border-dark);
+                background: var(--primary);
+                box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
             }
 
             .timeline-item {
@@ -358,7 +364,9 @@
             }
 
             body.dark-mode .timeline-item:hover .timeline-dot {
-                box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+                background: var(--text-dark);
+                border-color: var(--text-dark);
+                box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.15);
             }
 
             .timeline-content {
@@ -379,6 +387,10 @@
                 box-shadow: var(--shadow-md);
             }
 
+            body.dark-mode .timeline-item:hover .timeline-content {
+                box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            }
+
             .timeline-date {
                 font-size: 0.8rem;
                 font-weight: 600;
@@ -386,6 +398,10 @@
                 margin-bottom: 0.75rem;
                 text-transform: uppercase;
                 letter-spacing: 0.5px;
+            }
+
+            body.dark-mode .timeline-date {
+                color: var(--text-dark);
             }
 
             .timeline-title {
@@ -438,6 +454,11 @@
             .timeline-platform:hover {
                 background: var(--primary);
                 color: white;
+            }
+
+            body.dark-mode .timeline-platform:hover {
+                background: var(--text-dark);
+                color: var(--bg-dark);
             }
 
 
