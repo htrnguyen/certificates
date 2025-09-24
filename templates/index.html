@@ -7,405 +7,291 @@
 
   <!-- Favicon & Fonts -->
   <link rel="icon" href="https://github.com/htrnguyen.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-
+  
   <style>
     :root{
-      /* Neutral palette */
-      --primary:#111; --secondary:#6b7280;
-      --bg-light:#fafafa; --bg-dark:#0f0f0f;
-      --text-light:#1f2937; --text-dark:#f3f4f6;
-      --border-light:#e5e7eb; --border-dark:#2d3748;
-      --card-bg-light:#ffffff; --card-bg-dark:#161616;
-      --shadow-sm:0 1px 3px rgba(0,0,0,.06);
-      --shadow-md:0 6px 18px rgba(0,0,0,.08);
-      --focus:0 0 0 3px rgba(17,17,17,.15);
+      /* Color Palette */
+      --bg-light: #f8f9fa; --bg-dark: #0d1117;
+      --card-bg-light: #ffffff; --card-bg-dark: #161b22;
+      --text-light: #212529; --text-dark: #c9d1d9;
+      --text-secondary-light: #6c757d; --text-secondary-dark: #8b949e;
+      --border-light: #dee2e6; --border-dark: #30363d;
+      --hover-light: #f1f3f5; --hover-dark: #21262d;
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.07), 0 4px 6px -4px rgb(0 0 0 / 0.07);
+      --focus-ring: 0 0 0 3px rgba(76, 129, 230, 0.4);
+      --accent: #4c81e6;
 
-      /* Platform brand colors (badge only) */
-      --coursera:#2a73cc;
-      --udemy:#a435f0;
-      --gitiho:#00A19B;
-      --edx:#02262B;
-      --linkedin:#0a66c2;
-      --google:#1a73e8;
-      --ibm:#0062ff;
-      --kaggle:#20beff;
-      --freecodecamp:#0a0a23;
-      --default-platform:#444; /* fallback for unknown platforms */
+      /* Brand Colors */
+      --coursera: #2a73cc; --udemy: #a435f0; --gitiho: #00A19B;
+      --edx: #02262B; --linkedin: #0a66c2; --google: #4285F4;
+      --ibm: #0062ff; --kaggle: #20beff; --freecodecamp: #0a0a23;
+      --default-platform: #495057;
     }
 
     /* Base */
     *{margin:0;padding:0;box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
-      font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      line-height:1.65;color:var(--text-light);background:var(--bg-light);
+      font-family:'Inter',system-ui,sans-serif;
+      line-height:1.6;color:var(--text-light);background-color:var(--bg-light);
       min-height:100vh;transition:background .3s ease,color .3s ease;
+      display: flex; flex-direction: column;
     }
-    body.dark-mode{color:var(--text-dark);background:var(--bg-dark)}
-
-    /* Layout container */
-    .container{
-      max-width:1200px;
-      margin-inline:auto;        /* center horizontally */
-      padding-inline:1.25rem;    /* responsive side padding */
-      width:100%;
-    }
+    body.dark-mode{color:var(--text-dark);background-color:var(--bg-dark)}
+    .container{max-width:1280px;margin-inline:auto;padding-inline:1.5rem;width:100%}
+    main { flex-grow: 1; }
 
     /* Header */
-    .header{padding-block:1.25rem;border-bottom:1px solid rgba(0,0,0,.05)}
-    body.dark-mode .header{border-bottom-color:rgba(255,255,255,.08)}
-    .header-wrap{
-      display:flex;align-items:center;justify-content:space-between;gap:1rem;
-    }
+    .header{padding-block:1.25rem;border-bottom:1px solid var(--border-light); background-color: rgba(255,255,255,0.8); backdrop-filter: blur(8px); }
+    body.dark-mode .header{border-bottom-color:var(--border-dark); background-color: rgba(13,17,23,0.8);}
+    .header-wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem}
     .header-left{display:flex;align-items:center;gap:.9rem}
-    .avatar{width:52px;height:52px;border-radius:50%;border:1px solid var(--border-light);object-fit:cover}
-    body.dark-mode .avatar{border-color:var(--border-dark)}
-    .title{font-weight:800;font-size:clamp(1.05rem,1.8vw,1.25rem);letter-spacing:.2px}
-    .subtitle{color:var(--secondary);font-size:.9rem}
-    .header-stats{display:flex;gap:.75rem;flex-wrap:wrap;justify-content:center}
-    .stat{
-      min-width:96px;text-align:center;padding:.5rem .7rem;border-radius:12px;
-      background:var(--card-bg-light);border:1px solid var(--border-light);box-shadow:var(--shadow-sm);
-    }
+    .avatar{width:52px;height:52px;border-radius:50%;border:2px solid var(--border-light)}
+    .title{font-weight:700;font-size:clamp(1.1rem,1.8vw,1.25rem); color: var(--text-light);}
+    body.dark-mode .title {color: var(--text-dark);}
+    .subtitle{color:var(--text-secondary-light);font-size:.9rem}
+    body.dark-mode .subtitle {color: var(--text-secondary-dark);}
+    .header-controls{display:flex;align-items:center;gap:1rem}
+    .header-stats{display:flex;align-items:stretch;gap:.75rem}
+    .stat{min-width:100px;text-align:center;padding:.5rem .75rem;border-radius:12px;background:var(--card-bg-light);border:1px solid var(--border-light);box-shadow:var(--shadow-sm); display:flex; flex-direction:column; justify-content:center;}
     body.dark-mode .stat{background:var(--card-bg-dark);border-color:var(--border-dark)}
-    .stat .num{font-weight:800;font-size:1rem}
-    .stat .lbl{font-size:.68rem;color:var(--secondary);text-transform:uppercase;letter-spacing:.5px}
-    .theme-toggle{width:40px;height:40px;border-radius:10px;background:var(--card-bg-light);border:1px solid var(--border-light);color:inherit;cursor:pointer}
+    .stat .num{font-weight:700;font-size:1.1rem;color:var(--accent)}
+    .stat .lbl{font-size:.7rem;color:var(--text-secondary-light);text-transform:uppercase;font-weight:600}
+    body.dark-mode .stat .lbl {color: var(--text-secondary-dark);}
+    .theme-toggle{width:auto;height:auto;display:flex;align-items:center;justify-content:center;border-radius:12px;background:var(--card-bg-light);border:1px solid var(--border-light);color:inherit;cursor:pointer;font-size:1.1rem; padding: 0.7rem;}
     body.dark-mode .theme-toggle{background:var(--card-bg-dark);border-color:var(--border-dark)}
-    .theme-toggle:focus-visible{outline:none;box-shadow:var(--focus)}
+    .theme-toggle:focus-visible{outline:none;box-shadow:var(--focus-ring)}
+    
+    /* Search & Filter Section */
+    .search{padding:2rem 0}
+    .search-grid{display:grid;grid-template-columns:1fr;gap:1rem;max-width:1280px;margin:0 auto}
+    @media (min-width: 768px) { .search-grid{grid-template-columns:1fr 300px;} }
+    .input-group { position: relative; }
+    .input-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: var(--text-secondary-light); }
+    body.dark-mode .input-icon { color: var(--text-secondary-dark); }
+    .input{width:100%;padding:.75rem 1rem .75rem 3rem;border-radius:12px;font-size:.95rem;background:var(--card-bg-light);border:1px solid var(--border-light);box-shadow:var(--shadow-sm)}
+    .select{width:100%;padding:.75rem 1rem;border-radius:12px;font-size:.95rem;background:var(--card-bg-light);border:1px solid var(--border-light);box-shadow:var(--shadow-sm)}
+    body.dark-mode .input,body.dark-mode .select{background:var(--card-bg-dark);border-color:var(--border-dark);color:var(--text-dark)}
+    .input:focus,.select:focus{outline:none;border-color:var(--accent);box-shadow:var(--focus-ring)}
 
-    /* Main */
-    main{padding-block:1.25rem}
+    /* Certificate Ledger Container */
+    .ledger-container{border-radius:16px;background:var(--card-bg-light);box-shadow:var(--shadow-lg); border: 1px solid var(--border-light);}
+    body.dark-mode .ledger-container{border-color:var(--border-dark);background:var(--card-bg-dark)}
+    
+    .ledger-header { display: none; } /* Hide header on mobile */
+    @media (min-width: 768px) {
+        .ledger-header { display: grid; grid-template-columns: 5fr 2fr 2fr; gap: 1rem; padding: 0.75rem 1.5rem; border-bottom: 1px solid var(--border-light); }
+        body.dark-mode .ledger-header { border-bottom-color: var(--border-dark); }
+    }
+    .ledger-header .header-cell { font-size: 0.8rem; text-transform: uppercase; letter-spacing: .5px; color: var(--text-secondary-light); font-weight: 600; }
+    body.dark-mode .ledger-header .header-cell { color: var(--text-secondary-dark); }
+    
+    .ledger-row {
+        display: grid;
+        grid-template-areas:
+            "main main"
+            "tag meta";
+        grid-template-columns: 1fr auto;
+        gap: 0.5rem 1rem;
+        padding: 1.25rem 1.5rem;
+        align-items: center;
+        border-bottom: 1px solid var(--border-light);
+        transition: all .2s ease;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+        position: relative;
+    }
+    @media (min-width: 768px) {
+        .ledger-row { 
+            grid-template-columns: 5fr 2fr 2fr;
+            grid-template-areas: "main tag meta";
+         }
+    }
+    body.dark-mode .ledger-row { border-bottom-color: var(--border-dark); }
+    .ledger-row:last-child { border-bottom: 0; }
+    .ledger-row:hover { background-color: var(--hover-light); transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+    body.dark-mode .ledger-row:hover { background-color: var(--hover-dark); }
 
-    /* Sticky search */
-    .search{
-      position:sticky;top:0;z-index:5;
-      padding:.8rem 0 .8rem;
-      background:linear-gradient(to bottom, rgba(250,250,250,.9), rgba(250,250,250,.7) 65%, transparent);
-      backdrop-filter:saturate(1.05) blur(6px);
+    .cert-name{ grid-area: main; font-weight:600; display: flex; align-items: center; gap: 1rem; }
+    .platform-indicator { width: 4px; height: 24px; border-radius: 99px; flex-shrink: 0; }
+    
+    .platform-tag-cell { grid-area: tag; }
+    .date-cell { grid-area: meta; text-align: left; }
+    @media (min-width: 768px) {
+        .date-cell { text-align: left; }
     }
-    body.dark-mode .search{
-      background:linear-gradient(to bottom, rgba(15,15,15,.9), rgba(15,15,15,.7) 65%, transparent);
-    }
-    .search h2{
-      text-align:center;font-weight:800;letter-spacing:.6px;text-transform:uppercase;
-      font-size:.95rem;margin-bottom:.55rem;opacity:.85;
-    }
-    .search-grid{
-      display:grid;grid-template-columns:1fr 1fr;gap:.75rem;max-width:720px;margin:0 auto;
-    }
-    .field label{display:block;font-size:.82rem;font-weight:600;margin-bottom:.35rem}
-    .input, .select{
-      width:100%;padding:.65rem .85rem;border-radius:12px;font-size:.95rem;
-      background:var(--card-bg-light);border:1.5px solid var(--border-light);
-    }
-    body.dark-mode .input, body.dark-mode .select{
-      background:var(--card-bg-dark);border-color:var(--border-dark);color:var(--text-dark);
-    }
-    .input:focus, .select:focus{outline:none;box-shadow:var(--focus)}
-
-    /* Section heading */
-    .section-title{
-      text-align:center;font-weight:800;
-      font-size:clamp(1.1rem,2vw,1.35rem);
-      margin:.6rem 0 1rem;
-    }
-
-    /* Grid for 100+ items */
-    .timeline{
-      /* keep class name for JS compatibility */
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:.9rem;
-      align-items:stretch;
-    }
-    .timeline-item{margin:0}
-    .timeline-dot{display:none}
-
-    .card{
-      background:var(--card-bg-light);
-      border:1px solid var(--border-light);
-      border-radius:14px;
-      padding:.95rem 1rem;
-      box-shadow:var(--shadow-sm);
-      height:100%;
-      display:flex;flex-direction:column;gap:.6rem;
-      transition:transform .2s ease, box-shadow .2s ease;
-    }
-    body.dark-mode .card{background:var(--card-bg-dark);border-color:var(--border-dark)}
-    .timeline-item:hover .card{transform:translateY(-2px);box-shadow:var(--shadow-md)}
-
-    .cert-title{
-      font-weight:700;line-height:1.35;color:inherit;
-      font-size:clamp(.98rem,1.4vw,1.05rem);
-      display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.7em;
-      text-decoration:none;
-    }
-    .cert-title:focus-visible{outline:none;box-shadow:var(--focus)}
-
-    .meta{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
-    .platform{
-      padding:.3rem .6rem;border-radius:999px;line-height:1;
-      font-size:.7rem;font-weight:800;letter-spacing:.4px;color:#fff;background:var(--default-platform);
-      border:0;
-    }
-    /* Brand mapping */
-    .platform-coursera{background:var(--coursera)}
-    .platform-udemy{background:var(--udemy)}
-    .platform-gitiho{background:var(--gitiho)}
-    .platform-edx{background:var(--edx)}
-    .platform-linkedin{background:var(--linkedin)}
-    .platform-google{background:var(--google)}
-    .platform-ibm{background:var(--ibm)}
-    .platform-kaggle{background:var(--kaggle)}
-    .platform-freecodecamp{background:var(--freecodecamp)}
-
-    .date{font-size:.78rem;font-weight:600;color:var(--secondary);margin-top:.05rem}
+    .platform-tag{padding:.25rem .75rem;border-radius:999px;font-size:.8rem;font-weight:500;color:#fff;display:inline-block;}
+    
+    /* Brand colors */
+    .indicator-coursera, .tag-coursera{background:var(--coursera)} .indicator-udemy, .tag-udemy{background:var(--udemy)} .indicator-gitiho, .tag-gitiho{background:var(--gitiho)} .indicator-edx, .tag-edx{background:var(--edx)} .indicator-linkedin, .tag-linkedin{background:var(--linkedin)} .indicator-google, .tag-google{background:var(--google)} .indicator-ibm, .tag-ibm{background:var(--ibm)} .indicator-kaggle, .tag-kaggle{background:var(--kaggle)} .indicator-freecodecamp, .tag-freecodecamp{background:var(--freecodecamp)}
+    .indicator-default, .tag-default{background:var(--default-platform)}
 
     /* Empty state */
-    .empty{
-      text-align:center;padding:2.5rem 1.5rem;color:var(--secondary);
-      background:var(--card-bg-light);border:1px solid var(--border-light);border-radius:14px;
-    }
-    body.dark-mode .empty{background:var(--card-bg-dark);border-color:var(--border-dark)}
-    .empty i{font-size:2.6rem;margin-bottom:.75rem;opacity:.55}
-
+    .empty-state { text-align:center;padding:3rem;color:var(--text-secondary-light)}
+    body.dark-mode .empty-state {color: var(--text-secondary-dark);}
+    
     /* Footer */
-    .footer{padding:2.2rem 0;border-top:1px solid rgba(0,0,0,.05)}
-    body.dark-mode .footer{border-top-color:rgba(255,255,255,.08)}
-    .foot-wrap{text-align:center;max-width:700px;margin-inline:auto}
-    .links{display:flex;justify-content:center;gap:.75rem;flex-wrap:wrap;margin:1rem 0 1.1rem}
-    .links a{
-      padding:.6rem .95rem;border-radius:10px;text-decoration:none;color:inherit;
-      border:1px solid var(--border-light);background:var(--card-bg-light);
-    }
-    body.dark-mode .links a{border-color:var(--border-dark);background:var(--card-bg-dark)}
-    .links a:focus-visible{outline:none;box-shadow:var(--focus)}
+    .footer{padding:2.5rem 0;margin-top:auto;border-top:1px solid var(--border-light)}
+    body.dark-mode .footer{border-top-color:var(--border-dark)}
+    .footer-content{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;color:var(--text-secondary-light);font-size:0.9rem}
+    body.dark-mode .footer-content { color: var(--text-secondary-dark); }
+    .footer-links{display:flex;gap:1.5rem}
+    .footer-links a{color:var(--text-secondary-light);text-decoration:none;transition:color .2s ease; font-size: 1.2rem;}
+    body.dark-mode .footer-links a { color: var(--text-secondary-dark); }
+    .footer-links a:hover{color:var(--accent)}
 
-    /* Centering + responsive */
-    @media (max-width:1024px){
-      .header-wrap{flex-direction:column;text-align:center}
-      .header-stats{justify-content:center}
-    }
-    @media (max-width:768px){
-      .search-grid{grid-template-columns:1fr}
-      .timeline{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-    }
-    @media (max-width:480px){
-      .timeline{grid-template-columns:1fr}
-    }
   </style>
 </head>
-
-<body>
-  <!-- Header -->
-  <header class="header">
+<body class="antialiased">
+  
+  <header class="header sticky top-0 z-10">
     <div class="container header-wrap">
       <div class="header-left">
         <img src="./templates/Avatar.png" alt="Ha Trong Nguyen" class="avatar" />
         <div>
-          <div class="title">Ha Trong Nguyen</div>
-          <div class="subtitle">Professional Certificates Portfolio</div>
+          <h1 class="title">Ha Trong Nguyen</h1>
+          <p class="subtitle">Professional Certificate Archive</p>
         </div>
       </div>
-
-      <div class="header-stats" aria-label="Portfolio statistics">
-        <div class="stat">
-          <div class="num" id="total-certificates">{{ data|length if data else 0 }}</div>
-          <div class="lbl">Certificates</div>
-        </div>
-        <div class="stat">
-          {% if data %}
-            {% set platforms = [] %}
-            {% for row in data %}
-              {% if row['Certificate Type'] not in platforms %}
-                {% set _ = platforms.append(row['Certificate Type']) %}
-              {% endif %}
-            {% endfor %}
-            <div class="num" id="platforms-count">{{ platforms|length }}</div>
-          {% else %}
-            <div class="num" id="platforms-count">0</div>
-          {% endif %}
-          <div class="lbl">Platforms</div>
-        </div>
-        <div class="stat">
-          {% if data %}
-            {% set current_year = 2024 %}
-            {% set year_count = 0 %}
-            {% for row in data %}
-              {% if current_year|string in row['Date Issued'] %}
-                {% set year_count = year_count + 1 %}
-              {% endif %}
-            {% endfor %}
-            <div class="num" id="current-year">{{ year_count }}</div>
-          {% else %}
-            <div class="num" id="current-year">0</div>
-          {% endif %}
-          <div class="lbl">This Year</div>
-        </div>
+      <div class="header-controls">
+          <div class="header-stats">
+            <div class="stat">
+              <div class="num" id="total-certificates">{{ data|length if data else 0 }}</div>
+              <div class="lbl">Total</div>
+            </div>
+            <div class="stat">
+              {% if data %}{% set platforms = [] %}{% for row in data %}{% if row['Certificate Type'] not in platforms %}{% set _ = platforms.append(row['Certificate Type']) %}{% endif %}{% endfor %}<div class="num" id="platforms-count">{{ platforms|length }}</div>{% else %}<div class="num" id="platforms-count">0</div>{% endif %}
+              <div class="lbl">Platforms</div>
+            </div>
+             <div class="stat">
+              {% if data %}{% set current_year = 2025 %}{% set year_count = 0 %}{% for row in data %}{% if current_year|string in row['Date Issued'] %}{% set year_count = year_count + 1 %}{% endif %}{% endfor %}<div class="num" id="current-year">{{ year_count }}</div>{% else %}<div class="num" id="current-year">0</div>{% endif %}
+              <div class="lbl">This Year</div>
+            </div>
+          </div>
+          <button id="dark-mode-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+            <i class="fa-solid fa-moon"></i>
+          </button>
       </div>
-
-      <button id="dark-mode-toggle" class="theme-toggle" aria-label="Toggle dark mode">
-        <i class="fas fa-moon" aria-hidden="true"></i>
-      </button>
     </div>
   </header>
 
-  <!-- Main -->
   <main>
     <div class="container">
       {% if data %}
       <section class="search">
-        <h2>Find Your Certificates</h2>
         <div class="search-grid">
-          <div class="field">
-            <label for="search-input">Search Certificates</label>
-            <input type="text" id="search-input" class="input" placeholder="Search by certificate name..." autocomplete="off" />
+          <div class="input-group">
+            <i class="fa-solid fa-search input-icon"></i>
+            <input type="text" id="search-input" class="input" placeholder="Search by name or skill..." autocomplete="off" />
           </div>
-          <div class="field">
-            <label for="platform-filter">Filter by Platform</label>
+          <div class="input-group">
             <select id="platform-filter" class="select">
-              <option value="">All Platforms</option>
-              {% if data %}
-                {% set platforms = [] %}
-                {% for row in data %}
-                  {% if row['Certificate Type'] not in platforms %}
-                    {% set _ = platforms.append(row['Certificate Type']) %}
-                    <option value="{{ row['Certificate Type'] }}">{{ row['Certificate Type'] }}</option>
-                  {% endif %}
-                {% endfor %}
-              {% endif %}
+              <option value="">All Platforms ({{ data|length }})</option>
+              {% set platforms = [] %}{% for row in data %}{% if row['Certificate Type'] not in platforms %}{% set _ = platforms.append(row['Certificate Type']) %}{% endif %}{% endfor %}
+              {% for platform in platforms|sort %}
+                {% set count = namespace(value=0) %}
+                {% for row in data %}{% if row['Certificate Type'] == platform %}{% set count.value = count.value + 1 %}{% endif %}{% endfor %}
+                <option value="{{ platform }}">{{ platform }} ({{ count.value }})</option>
+              {% endfor %}
             </select>
           </div>
         </div>
       </section>
       {% endif %}
 
-      <section aria-label="Certificates list">
-        <h3 class="section-title">Certificates Gallery</h3>
-
-        <div class="timeline" id="timeline-container">
-          {% if data %}
-            {% for row in data %}
-            <article
-              class="timeline-item"
-              data-title="{{ row['Certificate Name']|lower }}"
-              data-platform="{{ row['Certificate Type']|lower }}"
-              data-date="{{ row['Date Issued'] }}"
-            >
-              <div class="card">
-                <a class="cert-title"
-                   href="{{ row['URL'] }}"
-                   target="_blank" rel="noopener"
-                   aria-label="Open certificate: {{ row['Certificate Name'] }}">
-                  {{ row['Certificate Name'] }}
-                </a>
-
-                <div class="meta">
-                  <span class="platform platform-{{ row['Certificate Type']|lower|replace(' ', '-') }}">
-                    {{ row['Certificate Type'] }}
-                  </span>
-                </div>
-
-                <div class="date">{{ row['Date Issued'] }}</div>
-              </div>
-            </article>
-            {% endfor %}
-          {% else %}
-            <div class="empty" role="status" aria-live="polite">
-              <i class="fas fa-certificate" aria-hidden="true"></i>
-              <p>No certificates available</p>
-              <p>Certificates will be loaded from Google Sheets when available.</p>
-            </div>
-          {% endif %}
+      <div class="ledger-container">
+        <div class="ledger-header">
+            <div class="header-cell">Certificate</div>
+            <div class="header-cell">Platform</div>
+            <div class="header-cell">Date Issued</div>
         </div>
-      </section>
+        <div id="cert-ledger-body">
+            {% if data %}
+              {% for row in data %}
+              <a href="{{ row['URL'] }}" target="_blank" rel="noopener" class="ledger-row" data-title="{{ row['Certificate Name']|lower }}" data-platform="{{ row['Certificate Type']|lower }}">
+                <div class="cert-name">
+                    <div class="platform-indicator indicator-{{ row['Certificate Type']|lower|replace(' ', '-') if row['Certificate Type']|lower|replace(' ', '-') in ['google', 'coursera', 'udemy', 'microsoft', 'linkedin', 'ibm', 'gitiho', 'edx', 'kaggle', 'freecodecamp'] else 'default' }}"></div>
+                    <span>{{ row['Certificate Name'] }}</span>
+                </div>
+                <div class="platform-tag-cell">
+                    <span class="platform-tag tag-{{ row['Certificate Type']|lower|replace(' ', '-') if row['Certificate Type']|lower|replace(' ', '-') in ['google', 'coursera', 'udemy', 'microsoft', 'linkedin', 'ibm', 'gitiho', 'edx', 'kaggle', 'freecodecamp'] else 'default' }}">
+                        {{ row['Certificate Type'] }}
+                    </span>
+                </div>
+                <div class="date-cell text-sm text-secondary-light dark:text-secondary-dark">{{ row['Date Issued'] }}</div>
+              </a>
+              {% endfor %}
+            {% else %}
+              <div class="empty-state">No certificates available to display.</div>
+            {% endif %}
+        </div>
+      </div>
     </div>
   </main>
-
-  <!-- Footer -->
+  
   <footer class="footer">
-    <div class="container foot-wrap">
-      <h4 class="title" style="font-size:1.05rem;margin-bottom:.4rem;">Get in Touch</h4>
-      <p style="opacity:.85;margin-bottom:.9rem;">Interested in collaboration or have questions? Feel free to reach out!</p>
-      <div class="links">
-        <a href="mailto:hatrongnguyen04@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-        <a href="https://www.linkedin.com/in/htrnguyen" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
-        <a href="https://github.com/htrnguyen" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
-        <a href="https://www.facebook.com/htronguyenn" target="_blank" rel="noopener"><i class="fab fa-facebook"></i> Facebook</a>
+      <div class="container">
+          <div class="footer-content">
+              <p>&copy; 2025 Ha Trong Nguyen. All rights reserved.</p>
+              <div class="footer-links">
+                  <a href="https://www.linkedin.com/in/htrnguyen" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                  <a href="https://github.com/htrnguyen" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+              </div>
+          </div>
       </div>
-      <p style="opacity:.7">&copy; 2024 Ha Trong Nguyen. All rights reserved.</p>
-    </div>
   </footer>
 
-  <!-- Scripts -->
   <script>
     // Dark Mode
     (function() {
       const btn = document.getElementById('dark-mode-toggle');
+      if (!btn) return;
       const body = document.body;
+      const icon = btn.querySelector('i');
       if (localStorage.getItem('darkMode') === 'enabled') {
         body.classList.add('dark-mode');
-        btn.innerHTML = '<i class="fas fa-sun" aria-hidden="true"></i>';
+        icon.className = 'fa-solid fa-sun';
       }
       btn.addEventListener('click', () => {
         body.classList.toggle('dark-mode');
         const enabled = body.classList.contains('dark-mode');
-        btn.innerHTML = enabled ? '<i class="fas fa-sun" aria-hidden="true"></i>' : '<i class="fas fa-moon" aria-hidden="true"></i>';
+        icon.className = enabled ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
         localStorage.setItem('darkMode', enabled ? 'enabled' : 'disabled');
       });
     })();
+    
+    // Search & Filter Logic
+    if (document.getElementById('search-input')) {
+        const searchInput = document.getElementById('search-input');
+        const platformFilter = document.getElementById('platform-filter');
+        const rows = document.querySelectorAll('.ledger-row');
+        
+        function doFilter(){
+            const q = searchInput.value.toLowerCase().trim();
+            const p = platformFilter.value.toLowerCase().trim();
+            
+            rows.forEach(row => {
+                const title = row.dataset.title || '';
+                const plat  = row.dataset.platform || '';
+                const matchesSearch = title.includes(q);
+                const matchesPlatform = !p || plat === p;
+                row.style.display = (matchesSearch && matchesPlatform) ? 'grid' : 'none';
+            });
+        }
 
-    // Search & Filter (debounced for large lists)
-    const searchInput = document.getElementById('search-input');
-    const platformFilter = document.getElementById('platform-filter');
-    const items = document.querySelectorAll('.timeline-item');
+        let debounceTimer;
+        function debouncedFilter(){
+            clearTimeout(debounceTimer);
+            debounceTimer = setTimeout(doFilter, 200);
+        }
 
-    function updateStats(){
-      const visible = document.querySelectorAll('.timeline-item:not([style*="display: none"])');
-      const platforms = new Set();
-      const currentYear = new Date().getFullYear();
-      let yearCount = 0;
-
-      visible.forEach(item => {
-        const p = item.dataset.platform;
-        if (p) platforms.add(p);
-        const dt = item.querySelector('.date')?.textContent || '';
-        if (dt.includes(currentYear.toString())) yearCount++;
-      });
-
-      const tc = document.getElementById('total-certificates');
-      const pc = document.getElementById('platforms-count');
-      const cy = document.getElementById('current-year');
-      if (tc) tc.textContent = visible.length;
-      if (pc) pc.textContent = platforms.size;
-      if (cy) cy.textContent = yearCount;
+        searchInput.addEventListener('input', debouncedFilter);
+        platformFilter.addEventListener('change', doFilter);
     }
-
-    function doFilter(){
-      const q = (searchInput?.value || '').toLowerCase().trim();
-      const p = (platformFilter?.value || '').toLowerCase().trim();
-      items.forEach(item => {
-        const title = item.dataset.title || '';
-        const plat  = item.dataset.platform || '';
-        const okQ = title.includes(q);
-        const okP = !p || plat.includes(p);
-        item.style.display = (okQ && okP) ? 'block' : 'none';
-      });
-      updateStats();
-    }
-
-    let timer;
-    function filterCertificates(){
-      clearTimeout(timer);
-      timer = setTimeout(doFilter, 120);
-    }
-
-    if (searchInput) searchInput.addEventListener('input', filterCertificates);
-    if (platformFilter) platformFilter.addEventListener('change', filterCertificates);
-    updateStats();
   </script>
 </body>
 </html>
+
