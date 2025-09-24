@@ -41,7 +41,7 @@ if data is None:
 
 # Render HTML template
 try:
-    with open("templates/index.html") as file_:
+    with open("templates/index.html", "r", encoding="utf-8") as file_:
         template = Template(file_.read())
         rendered_html = template.render(data=data)
 
